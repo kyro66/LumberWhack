@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dme0iujfw4122"]
+
+[ext_resource type="Script" uid="uid://bvteo1f5wxj5t" path="res://scripts/ui/settings_menu.gd" id="1_rjqhu"]
+
+[node name="SettingsMenu" type="Control" unique_id=1448070335]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rjqhu")
+
+[node name="Return" type="Button" parent="." unique_id=47492249]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -81.0
+offset_right = 126.0
+offset_bottom = -50.0
+grow_vertical = 0
+text = "Return"

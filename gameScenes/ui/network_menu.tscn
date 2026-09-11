@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://broly75536r7i"]
+
+[ext_resource type="Script" uid="uid://carjuvvwp632q" path="res://scripts/ui/network_menu.gd" id="1_lw1fb"]
+
+[node name="NetworkMenu" type="Control" unique_id=1537978222]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lw1fb")
+
+[node name="Return" type="Button" parent="." unique_id=224457379]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -81.0
+offset_right = 126.0
+offset_bottom = -50.0
+grow_vertical = 0
+text = "Return"
