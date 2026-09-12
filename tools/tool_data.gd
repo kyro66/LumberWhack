@@ -8,3 +8,7 @@ enum ToolType {AXE, KNIFE, SAW}
 @export var scene: PackedScene
 @export var type: ToolType
 @export var power: int
+@export var value: int
+
+func _ready() -> void:
+	set_meta("value", value)

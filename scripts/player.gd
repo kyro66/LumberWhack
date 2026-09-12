@@ -38,15 +38,15 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	# Ignore input events for remote peers
 	if !is_multiplayer_authority(): return
-			
+	
+	# Make sure your not in a UI for everything past this point
+	if !Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: return
+	
 	# Process mouse motion
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_movement(event)
 
 func player_movement(delta: float) -> void: #delta just takes in the delta float from physics process
-	# Make sure your not in a UI
-	if !Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: return
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
