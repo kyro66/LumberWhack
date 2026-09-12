@@ -4,6 +4,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_jsve7"]
 font_names = PackedStringArray("Reem Kufi")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_73jnp"]
 font = SubResource("SystemFont_jsve7")
@@ -54,9 +55,3 @@ grow_horizontal = 2
 text = "Paused"
 label_settings = SubResource("LabelSettings_73jnp")
 horizontal_alignment = 1
-
-[node name="ServerIP" type="Label" parent="PauseMenu" unique_id=1601266540]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Server Address: 127.0.0.1"
