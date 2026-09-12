@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ea7cnsqce8nm"]
+
+[ext_resource type="Script" uid="uid://0ehjwk6k6de0" path="res://scripts/sell.gd" id="1_r1ycp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq8tk"]
+transparency = 1
+albedo_color = Color(0.57254905, 1, 0.52156866, 0.24705882)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3xd07"]
+material = SubResource("StandardMaterial3D_jq8tk")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dp7xu"]
+size = Vector3(2, 2, 2)
+
+[node name="SellArea" type="Node3D" unique_id=546111480 node_paths=PackedStringArray("area", "value_display")]
+script = ExtResource("1_r1ycp")
+area = NodePath("Area3D")
+value_display = NodePath("Area3D/MoneyDisplay")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1724374915]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1849775976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_3xd07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=890262192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_dp7xu")
+
+[node name="MoneyDisplay" type="Label3D" parent="Area3D" unique_id=1750596135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3267574, 0)
+billboard = 1
+double_sided = false
+text = "Value: 0"
