@@ -13,6 +13,7 @@ const JUMP_VELOCITY = 4.5
 
 #region Child References
 @onready var camera: Camera3D = $Camera3D
+@onready var hand: Node3D = $Camera3D/Hand
 #endregion
 
 func _enter_tree() -> void:
@@ -42,7 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_movement(event)
 
-func player_movement(delta) -> void: #delta just takes in the delta float from physics process
+func player_movement(delta: float) -> void: #delta just takes in the delta float from physics process
 	# Make sure your not in a UI
 	if !Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: return
 	
@@ -66,7 +67,7 @@ func player_movement(delta) -> void: #delta just takes in the delta float from p
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	
+
 func camera_movement(mouse_motion_event: InputEvent) -> void:
 	# Rotate player horizontally
 	rotate_y(-mouse_motion_event.relative.x * mouse_sens)

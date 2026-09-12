@@ -43,7 +43,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_yf5fn")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=530030136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3729157, -0.032396078)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3729157, -0.032396317)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1486350231]
 target_position = Vector3(0, 0, -2.5)
+
+[node name="Hand" type="Node3D" parent="Camera3D" unique_id=625422728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7370753)

@@ -19,7 +19,7 @@ func get_connected_server_ip() -> String:
 	var peer = multiplayer.multiplayer_peer
 	
 	#Verify we are running ENet and connected as client
-	if peer is ENetMultiplayerPeer and not multiplayer.is_server():
+	if peer is ENetMultiplayerPeer:
 		var server_peer: ENetPacketPeer = peer.get_peer(1) # 1 is always the host
 		if server_peer:
 			return server_peer.get_remote_address()
