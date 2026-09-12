@@ -2,6 +2,19 @@
 
 [ext_resource type="Script" uid="uid://bvteo1f5wxj5t" path="res://scripts/ui/settings_menu.gd" id="1_rjqhu"]
 
+[sub_resource type="SystemFont" id="SystemFont_rjqhu"]
+font_names = PackedStringArray("Reem Kufi")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbvg4"]
+font = SubResource("SystemFont_rjqhu")
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.827451)
+shadow_offset = Vector2(6, 6)
+
 [node name="SettingsMenu" type="Control" unique_id=1448070335]
 layout_mode = 3
 anchors_preset = 15
@@ -11,7 +24,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rjqhu")
 
+[node name="LumberWhack" type="Label" parent="." unique_id=369131651]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -219.0
+offset_right = 219.0
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "LumberWhack!"
+label_settings = SubResource("LabelSettings_tbvg4")
+
 [node name="Return" type="Button" parent="." unique_id=47492249]
+custom_minimum_size = Vector2(86, 46)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -22,3 +48,18 @@ offset_right = 126.0
 offset_bottom = -50.0
 grow_vertical = 0
 text = "Return"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=1028034821]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 23.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2

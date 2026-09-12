@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cb3mca3ycohsu"]
+
+[ext_resource type="Script" uid="uid://cddbeatpjwuf0" path="res://scripts/ui/lobby_menu.gd" id="1_2geyo"]
+[ext_resource type="PackedScene" uid="uid://ckc8p720a6jtk" path="res://prefabs/player_spawner.tscn" id="2_pv607"]
+
+[sub_resource type="SystemFont" id="SystemFont_rjqhu"]
+font_names = PackedStringArray("Reem Kufi")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_kbeeu"]
+font = SubResource("SystemFont_rjqhu")
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.827451)
+shadow_offset = Vector2(6, 6)
+
+[node name="LobbyMenu" type="Control" unique_id=525172028]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2geyo")
+
+[node name="PlayerSpawner" parent="." unique_id=947221261 instance=ExtResource("2_pv607")]
+
+[node name="LumberWhack" type="Label" parent="." unique_id=154770931]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -219.0
+offset_right = 219.0
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "LumberWhack!"
+label_settings = SubResource("LabelSettings_kbeeu")
+
+[node name="PlayersConnected" type="Label" parent="." unique_id=1543977848]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "1 Players Connected
+"
+
+[node name="Disconnect" type="Button" parent="." unique_id=859966883]
+custom_minimum_size = Vector2(86, 46)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 66.0
+offset_top = -98.0
+offset_right = 160.0
+offset_bottom = -52.0
+grow_vertical = 0
+text = "Disconnect"

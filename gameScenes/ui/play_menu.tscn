@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://broly75536r7i"]
+
+[ext_resource type="Script" uid="uid://carjuvvwp632q" path="res://scripts/ui/play_menu.gd" id="1_r8gdv"]
+
+[sub_resource type="SystemFont" id="SystemFont_yf5fn"]
+font_names = PackedStringArray("Reem Kufi")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_lw1fb"]
+font = SubResource("SystemFont_yf5fn")
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.827451)
+shadow_offset = Vector2(6, 6)
+
+[node name="PlayMenu" type="Control" unique_id=1537978222]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r8gdv")
+
+[node name="LumberWhack" type="Label" parent="." unique_id=807053701]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -219.0
+offset_right = 219.0
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "LumberWhack!"
+label_settings = SubResource("LabelSettings_lw1fb")
+
+[node name="Return" type="Button" parent="." unique_id=224457379]
+custom_minimum_size = Vector2(86, 46)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -81.0
+offset_right = 126.0
+offset_bottom = -50.0
+grow_vertical = 0
+text = "Return"
+
+[node name="VFlowContainer" type="VFlowContainer" parent="." unique_id=1362143502]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Singleplayer" type="Button" parent="VFlowContainer" unique_id=1013220171]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+text = "Singleplayer
+"
+
+[node name="Multiplayer" type="Button" parent="VFlowContainer" unique_id=103938172]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+text = "Multiplayer"

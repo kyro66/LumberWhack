@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://v1tjh5si6mcq"]
+
+[ext_resource type="PackedScene" uid="uid://ckc8p720a6jtk" path="res://prefabs/player_spawner.tscn" id="1_3xpgj"]
+[ext_resource type="PackedScene" uid="uid://chpxwtuftyhwc" path="res://prefabs/trees/basic_tree.tscn" id="2_8h18b"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3xpgj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8h18b"]
+size = Vector2(25, 25)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d0u6y"]
+sky_top_color = Color(0.685048, 0.30243766, 0.40649852, 1)
+sky_horizon_color = Color(0.84599197, 0.59034735, 0.38924694, 1)
+sky_curve = 0.28978074
+
+[sub_resource type="Sky" id="Sky_yf5fn"]
+sky_material = SubResource("ProceduralSkyMaterial_d0u6y")
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 2
+sky = SubResource("Sky_yf5fn")
+
+[node name="Level1" type="Node3D" unique_id=487679356]
+
+[node name="PlayerSpawner" parent="." unique_id=947221261 instance=ExtResource("1_3xpgj")]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=101384442]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=745375079]
+shape = SubResource("WorldBoundaryShape3D_3xpgj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=616206233]
+mesh = SubResource("PlaneMesh_8h18b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=717563488]
+transform = Transform3D(1, 0, 0, 0, 0.1913348, 0.9815248, 0, -0.9815248, 0.1913348, 0, 2.0300016, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=138669087]
+environment = SubResource("Environment_g4v7s")
+
+[node name="BasicTree" parent="." unique_id=1134569236 instance=ExtResource("2_8h18b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7804108, 0.25, -5.076095)
+
+[node name="BasicTree2" parent="." unique_id=1242005902 instance=ExtResource("2_8h18b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96107423, 0.25, -5.2665505)
+
+[node name="BasicTree3" parent="." unique_id=589628630 instance=ExtResource("2_8h18b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8397436, 0.25000048, -4.8929877)

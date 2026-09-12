@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://b464c7tehw7jv"]
+
+[ext_resource type="Script" uid="uid://csj4mqy4kmcos" path="res://scripts/ui/hud.gd" id="1_73jnp"]
+
+[sub_resource type="SystemFont" id="SystemFont_jsve7"]
+font_names = PackedStringArray("Reem Kufi")
+
+[sub_resource type="LabelSettings" id="LabelSettings_73jnp"]
+font = SubResource("SystemFont_jsve7")
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.827451)
+shadow_offset = Vector2(6, 6)
+
+[node name="HUD" type="Control" unique_id=210433657]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_73jnp")
+
+[node name="PlayerHUD" type="Control" parent="." unique_id=1952344724]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PauseMenu" type="Control" parent="." unique_id=1057384034]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Paused" type="Label" parent="PauseMenu" unique_id=2005224947]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -219.0
+offset_right = 219.0
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_73jnp")
+horizontal_alignment = 1
+
+[node name="ServerIP" type="Label" parent="PauseMenu" unique_id=1601266540]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Server Address: 127.0.0.1"

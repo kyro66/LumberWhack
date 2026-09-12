@@ -24,6 +24,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lw1fb")
 
+[node name="SteamLobbyBrowser" type="HFlowContainer" parent="." unique_id=1269007964]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -309.0
+offset_top = -11.0
+offset_right = -60.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="SteamLobbyList" type="VBoxContainer" parent="SteamLobbyBrowser" unique_id=1332064988]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SteamLobbyBrowser/SteamLobbyList" unique_id=1955579054]
+layout_mode = 2
+text = "Lobby Name: TEST | Players: 1/4"
+
 [node name="JoinHostHFlow" type="HFlowContainer" parent="." unique_id=1135067604]
 layout_mode = 1
 anchors_preset = 8
@@ -47,7 +69,34 @@ text = "Join Game"
 layout_mode = 2
 text = "Create Lobby"
 
+[node name="NetworkTypeHFlow" type="HFlowContainer" parent="." unique_id=827910534]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -34.0
+offset_right = 128.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Select Network Type" type="Label" parent="NetworkTypeHFlow" unique_id=1085474454]
+layout_mode = 2
+text = "Select Network Type:"
+
+[node name="NetworkType" type="OptionButton" parent="NetworkTypeHFlow" unique_id=1027499506]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "IP"
+popup/item_0/id = 0
+popup/item_1/text = "Steam"
+popup/item_1/id = 1
+
 [node name="IP" type="LineEdit" parent="." unique_id=1152207150]
+visible = false
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 1
 anchors_preset = 8

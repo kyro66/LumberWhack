@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://p14j1eg0pln1"]
+
+[ext_resource type="Script" uid="uid://7rufcns77ogd" path="res://scripts/ui/disconnected_menu.gd" id="1_svsdj"]
+
+[sub_resource type="SystemFont" id="SystemFont_7pcei"]
+font_names = PackedStringArray("Reem Kufi")
+
+[sub_resource type="LabelSettings" id="LabelSettings_lurby"]
+font = SubResource("SystemFont_7pcei")
+font_size = 32
+
+[node name="DisconnectedMenu" type="Control" unique_id=1141519329]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svsdj")
+
+[node name="LumberWhack" type="Label" parent="." unique_id=815208314]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -274.0
+offset_top = 164.0
+offset_right = 275.0
+offset_bottom = 265.0
+grow_horizontal = 2
+text = "Uh oh!
+Server closed connection or went offline"
+label_settings = SubResource("LabelSettings_lurby")
+horizontal_alignment = 1
+
+[node name="VFlowContainer" type="VFlowContainer" parent="." unique_id=1285853128]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReturnToMenu" type="Button" parent="VFlowContainer" unique_id=2030649738]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+text = "Return to Menu"
+
+[node name="QuitGame" type="Button" parent="VFlowContainer" unique_id=563317852]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+text = "Quit to Desktop"
+
+[connection signal="button_down" from="VFlowContainer/ReturnToMenu" to="." method="_on_return_to_menu_button_down"]
+[connection signal="button_down" from="VFlowContainer/QuitGame" to="." method="_on_quit_game_button_down"]

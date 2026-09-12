@@ -1,10 +1,12 @@
 extends Control
 
-# Button References
+#region Button References
 @onready var return_button: Button = $Return
+#endregion
 
-# Main Menu Reference
+#region Main Menu Reference
 const MAIN_MENU_PATH: String = "res://gameScenes/ui/main_menu.tscn"
+#endregion
 
 func _ready() -> void:
 	return_button.button_down.connect(_on_return_pressed)
