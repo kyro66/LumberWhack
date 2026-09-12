@@ -6,9 +6,6 @@ extends Node
 var sell_queue: Array[Node3D]
 var sell_queue_value: float
 
-# Temporary
-var money: float
-
 var sell_debounce: bool
 
 # Called when the node enters the scene tree for the first time.
@@ -23,10 +20,10 @@ func _ready() -> void:
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exit)
 	
+	multiplayer.peer_connected.connect(_on_peer_connected)
+	
 	# Initialize the debounce for selling
 	sell_debounce = false
-	
-	money = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -35,9 +32,6 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(node: Node3D):
-	print("entered")
-	sell_queue_value += 10
-	update_money_display()
 	if not multiplayer.is_server(): return
 	
 	# Check if the item has value metadata
@@ -52,12 +46,11 @@ func _on_body_entered(node: Node3D):
 	# add the value to the sell queue value total
 	sell_queue_value += node.get_meta('value')
 	
-	update_money_display()
+	print("entered")
+	update_money_display.rpc(sell_queue_value)
 	
 func _on_body_exit(node: Node3D):
-	print("left")
-	sell_queue_value -= 10
-	update_money_display()
+	
 	if not multiplayer.is_server(): return
 	
 	if not node.has_meta('value'): return
@@ -67,6 +60,9 @@ func _on_body_exit(node: Node3D):
 	sell_queue.remove_at(sell_queue.find(node))
 	sell_queue_value -= node.get_meta("value")
 	
+	print("left")
+	update_money_display.rpc(sell_queue_value)
+	
 @rpc("any_peer", "call_local", "reliable")
 func on_sell_pressed():
 	if not multiplayer.is_server(): return
@@ -74,17 +70,29 @@ func on_sell_pressed():
 	
 	sell_debounce = true
 	
-	money += sell_queue_value
+	
 	
 	# Loop through all the items in sell queue
 	for valuable: Node3D in sell_queue:
+		
+		if is_instance_valid(valuable):
 		# Delete the instantiatated item
-		valuable.queue_free()
+			valuable.queue_free()
+	
+	sell_queue.clear()
+	sell_queue_value = 0
+	update_money_display.rpc(sell_queue_value)
 	
 	sell_debounce = true
-		
-func update_money_display():
+
+
+@rpc("authority", "call_local", "reliable")
+func update_money_display(new: float):
+	sell_queue_value = new
 	value_display.text = 'Value: %.2f' % [sell_queue_value] 
 	
+func _on_peer_connected(id: int):
+	
+	update_money_display.rpc_id(id, sell_queue_value)
 	
 	

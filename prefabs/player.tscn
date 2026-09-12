@@ -24,6 +24,7 @@ size = Vector3(0.6513672, 0.22363281, 0.7694702)
 
 [node name="Player" type="CharacterBody3D" unique_id=1558535965]
 script = ExtResource("1_72ieh")
+metadata/value = 100.0
 
 [node name="HUD" parent="." unique_id=210433657 instance=ExtResource("2_4dohe")]
 
