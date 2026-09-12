@@ -29,7 +29,7 @@ func _ready() -> void:
 	money = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not multiplayer.is_server(): return
 	pass
 
