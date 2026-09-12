@@ -4,6 +4,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_jsve7"]
 font_names = PackedStringArray("Reem Kufi")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
 font = SubResource("SystemFont_jsve7")
