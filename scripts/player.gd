@@ -16,6 +16,22 @@ const JUMP_VELOCITY = 4.5
 @onready var hand: Node3D = $Camera3D/Hand
 #endregion
 
+#region Head bob
+@export_group("headbob")
+@export var headbob_freq := 2.0
+@export var headbob_amplitude := 0.04
+var headbob_time := 0.0
+#endregion
+
+#region footsteps
+@export_group("audio")
+@export var footstep_audio: AudioStreamPlayer3D
+var footstep_audio_can_play = true
+var footstep_landed
+#endregion
+
+
+
 func _enter_tree() -> void:
 	# When the player is instantiated, set the authority to their ID, which
 	# is also the name the PlayerSpawner gave them
@@ -65,8 +81,22 @@ func player_movement(delta: float) -> void: #delta just takes in the delta float
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	# Handle Landing Sound
+	if not footstep_landed and is_on_floor():
+		if footstep_audio:
+			footstep_audio.play()
+	footstep_landed = is_on_floor()
 
 	move_and_slide()
+	
+	if is_on_floor() and velocity.length() > 0.1:
+		headbob_time += delta * velocity.length()
+	else:
+		headbob_time = 0.0
+	footstep_landed = is_on_floor()
+	
+	camera.transform.origin = headbob(headbob_time)
 
 func camera_movement(mouse_motion_event: InputEvent) -> void:
 	# Rotate player horizontally
@@ -78,3 +108,18 @@ func camera_movement(mouse_motion_event: InputEvent) -> void:
 	# Clamp vertical rotation
 	var current_pitch: float = camera.rotation_degrees.x
 	camera.rotation_degrees.x = clamp(current_pitch, min_pitch, max_pitch)
+
+func headbob(time: float) -> Vector3:
+	var headbob_position = Vector3.ZERO
+	headbob_position.y = sin(time * headbob_freq) * headbob_amplitude
+	headbob_position.x = cos(time * headbob_freq / 2) * headbob_amplitude
+	
+	var footstep_threshold = -headbob_amplitude * .002
+	if headbob_position.y > footstep_threshold:
+		footstep_audio_can_play = true
+	elif headbob_position.y <= footstep_threshold and footstep_audio_can_play:
+		if footstep_audio and is_on_floor():
+			footstep_audio.play()
+		footstep_audio_can_play = false # FIX: Lock audio until bob goes back up
+	
+	return headbob_position
