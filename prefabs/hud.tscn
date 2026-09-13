@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://mi5kx76vwgx7" path="res://sprites/ui/slot.png" id="3_env85"]
 [ext_resource type="Texture2D" uid="uid://c6nhu3phxlwqb" path="res://sprites/ui/selected_slot.png" id="4_mbxvq"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_3xd07"]
+font_size = 32
+
 [sub_resource type="SystemFont" id="SystemFont_jsve7"]
 font_names = PackedStringArray("Reem Kufi")
 subpixel_positioning = 0
@@ -18,9 +21,6 @@ shadow_size = 20
 shadow_color = Color(0, 0, 0, 0.827451)
 shadow_offset = Vector2(6, 6)
 
-[sub_resource type="LabelSettings" id="LabelSettings_3xd07"]
-font_size = 50
-
 [node name="HUD" type="Control" unique_id=210433657 node_paths=PackedStringArray("player_hud", "hotbar", "money_label", "pause_menu")]
 layout_mode = 3
 anchors_preset = 15
@@ -30,13 +30,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_73jnp")
-player_hud = NodePath("PlayerHUD")
-hotbar = NodePath("PlayerHUD/Hotbar")
 slot = ExtResource("3_d7ypv")
-money_label = NodePath("MoneyLabel")
-pause_menu = NodePath("PauseMenu")
 slot_texture = ExtResource("3_env85")
 selected_slot_texture = ExtResource("4_mbxvq")
+player_hud = NodePath("PlayerHUD")
+hotbar = NodePath("PlayerHUD/Hotbar")
+money_label = NodePath("PlayerHUD/MoneyLabel")
+pause_menu = NodePath("PauseMenu")
 
 [node name="PlayerHUD" type="Control" parent="." unique_id=1952344724]
 layout_mode = 1
@@ -47,10 +47,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Money" type="Label" parent="PlayerHUD" unique_id=264544859]
+[node name="MoneyLabel" type="Label" parent="PlayerHUD" unique_id=14969774]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_right = 78.0
+offset_bottom = 69.0
+text = "$0"
+label_settings = SubResource("LabelSettings_3xd07")
 
 [node name="Hotbar" type="HFlowContainer" parent="PlayerHUD" unique_id=1501132123]
 custom_minimum_size = Vector2(64, 64)
@@ -106,12 +108,5 @@ offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Quit to Desktop"
-
-[node name="MoneyLabel" type="Label" parent="." unique_id=14969774]
-layout_mode = 0
-offset_right = 78.0
-offset_bottom = 40.0
-text = "$0"
-label_settings = SubResource("LabelSettings_3xd07")
 
 [connection signal="button_down" from="PauseMenu/QuitGame" to="." method="_on_quit_game_button_down"]
