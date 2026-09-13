@@ -22,8 +22,9 @@ size = Vector3(0.6513672, 0.22363281, 0.7694702)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf5fn"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1558535965]
+[node name="Player" type="CharacterBody3D" unique_id=1558535965 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_72ieh")
+camera = NodePath("Head/Camera3D")
 metadata/value = 100.0
 
 [node name="HUD" parent="." unique_id=210433657 instance=ExtResource("2_4dohe")]
@@ -43,11 +44,13 @@ mesh = SubResource("BoxMesh_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_yf5fn")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=530030136]
+[node name="Head" type="Node3D" parent="." unique_id=1770357806]
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=530030136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3729157, -0.032396317)
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1486350231]
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1486350231]
 target_position = Vector3(0, 0, -2.5)
 
-[node name="Hand" type="Node3D" parent="Camera3D" unique_id=625422728]
+[node name="Hand" type="Node3D" parent="Head/Camera3D" unique_id=625422728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7370753)

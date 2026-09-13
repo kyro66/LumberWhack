@@ -12,7 +12,7 @@ const JUMP_VELOCITY = 4.5
 #endregion
 
 #region Child References
-@onready var camera: Camera3D = $Camera3D
+@export var camera: Camera3D
 @onready var hand: Node3D = $Camera3D/Hand
 #endregion
 
