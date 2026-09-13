@@ -97,8 +97,10 @@ func player_movement(delta: float) -> void: #delta just takes in the delta float
 		headbob_time = 0.0
 	footstep_landed = is_on_floor()
 	
+	var camera_bob_offset = headbob(headbob_time)
+	
 	if player_config.enable_camera_bobbing:
-		camera.transform.origin = headbob(headbob_time)
+		camera.transform.origin = camera_bob_offset
 
 func camera_movement(mouse_motion_event: InputEvent) -> void:
 	# Rotate player horizontally
