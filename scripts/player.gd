@@ -13,7 +13,7 @@ const JUMP_VELOCITY = 4.5
 
 #region Child References
 @export var camera: Camera3D
-@onready var hand: Node3D = $Camera3D/Hand
+@onready var hand: Node3D = $Head/Camera3D/Hand
 #endregion
 
 #region Head bob
@@ -85,7 +85,7 @@ func player_movement(delta: float) -> void: #delta just takes in the delta float
 	# Handle Landing Sound
 	if not footstep_landed and is_on_floor():
 		if footstep_audio:
-			footstep_audio.play()
+			play_footstep_sfx.rpc()
 	footstep_landed = is_on_floor()
 
 	move_and_slide()
@@ -119,7 +119,13 @@ func headbob(time: float) -> Vector3:
 		footstep_audio_can_play = true
 	elif headbob_position.y <= footstep_threshold and footstep_audio_can_play:
 		if footstep_audio and is_on_floor():
-			footstep_audio.play()
+			play_footstep_sfx.rpc()
 		footstep_audio_can_play = false # FIX: Lock audio until bob goes back up
 	
 	return headbob_position
+	
+@rpc("any_peer", "call_local", "reliable")
+func play_footstep_sfx():
+	if footstep_audio:
+		footstep_audio.play()
+	

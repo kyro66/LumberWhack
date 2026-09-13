@@ -14,7 +14,7 @@ func _ready() -> void:
 	
 	# Initialize the sell queue to empty
 	sell_queue = []
-	sell_queue_value = 0.0
+	sell_queue_value = 0
 	
 	# Create signal so that whenever an item enters the Area3D it is added to the sell queue
 	area.body_entered.connect(_on_body_entered)
@@ -89,7 +89,7 @@ func on_sell_pressed():
 @rpc("authority", "call_local", "reliable")
 func update_money_display(new: float):
 	sell_queue_value = new
-	value_display.text = 'Value: %.2f' % [sell_queue_value] 
+	value_display.text = 'Value: %d' % [sell_queue_value] 
 	
 func _on_peer_connected(id: int):
 	

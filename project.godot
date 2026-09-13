@@ -18,6 +18,7 @@ config/icon="uid://c61uyeuytm1b7"
 [autoload]
 
 NetworkHandler="*uid://c3crdyvms3utb"
+MoneyManager="*uid://b2a2bmjqfmi3b"
 
 [display]
 
