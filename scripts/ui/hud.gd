@@ -5,6 +5,7 @@ extends Control
 @export var player_hud: Control
 @export var hotbar: HFlowContainer
 @export var slot: PackedScene
+@export var money_label: Label
 
 @export var pause_menu: Control
 #endregion
@@ -23,6 +24,7 @@ var inventory: Array[ToolData] = []
 
 func _ready() -> void:
 	create_hotbar()
+	MoneyManager.money_changed.connect(update_money)
 
 func _unhandled_input(event) -> void:
 	if event.is_action_pressed("pause"): toggle_pause_menu()
@@ -70,6 +72,9 @@ func set_active_slot(selected_slot: int) -> void:
 	if active:
 		var tex = active.get_node("TextureRect")
 		if tex: tex.texture = selected_slot_texture
+
+func update_money(amount: int):
+	money_label.text = "$%d" % amount
 	
 func _on_quit_game_button_down() -> void:
 	get_tree().quit()

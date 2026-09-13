@@ -30,8 +30,6 @@ var footstep_audio_can_play = true
 var footstep_landed
 #endregion
 
-
-
 func _enter_tree() -> void:
 	# When the player is instantiated, set the authority to their ID, which
 	# is also the name the PlayerSpawner gave them
