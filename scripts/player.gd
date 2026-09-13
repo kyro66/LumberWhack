@@ -50,9 +50,17 @@ func _ready() -> void:
 		
 func _process(_delta: float) -> void:
 	current_collider = raycast.get_collider()
-	if current_collider and current_collider.has_method("interact"):
+	
+	
+	
+	
+	
+	if not current_collider: return
+	if current_collider.has_method("interact"):
 		#TODO: Display E to interact
 		pass
+	
+	
 
 func _physics_process(delta: float) -> void:
 	# Ignore remote peers
