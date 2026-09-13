@@ -10,8 +10,8 @@ extends Control
 #endregion
 
 #region Textures
-@export var slot_texture: Texture2D
-@export var selected_slot_texture: Texture2D
+var slot_texture = preload("res://sprites/ui/slot.png")
+var selected_slot_texture = preload("res://sprites/ui/selected_slot.png")
 #endregion
 
 #region Working Variables
@@ -60,21 +60,16 @@ func set_active_slot(selected_slot: int) -> void:
 	last_active_slot = active_slot
 	active_slot = selected_slot
 	
-	var last_active = hotbar.find_child(str(last_active_slot))
-	var active = hotbar.find_child(str(active_slot))
+	var last_active = hotbar.get_node(str(last_active_slot))
+	var active = hotbar.get_node(str(active_slot))
 	
 	if last_active:
-		var tex = last_active.find_child("TextureRect")
+		var tex = last_active.get_node("TextureRect")
 		if tex: tex.texture = slot_texture
-		else:
-			print("ERROR -- Last Active Slot Texture not found")
-	else:
-		print("ERROR -- Last Active Slot not found")
 		
 	if active:
-		var tex = active.find_child("TextureRect")
+		var tex = active.get_node("TextureRect")
 		if tex: tex.texture = selected_slot_texture
-		else: print("ERROR -- Active Slot Texture not found")
-	else:
-		print("ERROR -- Active Slot not found")
 	
+func _on_quit_game_button_down() -> void:
+	get_tree().quit()
