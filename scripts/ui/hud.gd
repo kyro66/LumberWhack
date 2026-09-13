@@ -78,3 +78,6 @@ func update_money(amount: int):
 	
 func _on_quit_game_button_down() -> void:
 	get_tree().quit()
+
+func _on_return_to_game_button_down() -> void:
+	toggle_pause_menu()
