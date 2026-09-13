@@ -1,4 +1,5 @@
 extends Node
+class_name Sell
 
 @export var area: Area3D
 @export var value_display: Label3D
@@ -65,6 +66,7 @@ func _on_body_exit(node: Node3D):
 	
 @rpc("any_peer", "call_local", "reliable")
 func on_sell_pressed():
+	print("sold")
 	if not multiplayer.is_server(): return
 	if sell_debounce: return
 	
@@ -83,7 +85,7 @@ func on_sell_pressed():
 	sell_queue_value = 0
 	update_money_display.rpc(sell_queue_value)
 	
-	sell_debounce = true
+	sell_debounce = false
 
 
 @rpc("authority", "call_local", "reliable")

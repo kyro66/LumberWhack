@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ckc8p720a6jtk" path="res://prefabs/player_spawner.tscn" id="1_3xpgj"]
 [ext_resource type="PackedScene" uid="uid://chpxwtuftyhwc" path="res://prefabs/trees/basic_tree.tscn" id="2_8h18b"]
 [ext_resource type="PackedScene" uid="uid://ea7cnsqce8nm" path="res://prefabs/sell_area.tscn" id="3_emb1p"]
+[ext_resource type="PackedScene" uid="uid://deh8mgqrl68qj" path="res://prefabs/npcs/seller.tscn" id="4_cytrd"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3xpgj"]
 
@@ -53,3 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8578053, 0, 0.018268526)
 
 [node name="SellArea3" parent="." unique_id=546111480 instance=ExtResource("3_emb1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8578053, 0, 5.618641)
+
+[node name="Seller" parent="." unique_id=1904053443 node_paths=PackedStringArray("sell_area") instance=ExtResource("4_cytrd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40308, 0, -1.5410459)
+sell_area = NodePath("../SellArea2")
