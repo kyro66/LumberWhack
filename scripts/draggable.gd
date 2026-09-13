@@ -44,7 +44,7 @@ func request_update_drag(target_position: Vector3) -> void:
 	apply_force(force.limit_length(max_force), force_position)
 	
 @rpc("any_peer", "call_local", "reliable")
-func request_end_drag(stop_movement: bool = true) -> void:
+func request_end_drag(_stop_movement: bool = true) -> void:
 	if !multiplayer.is_server(): return
 	
 	is_being_dragged = false
