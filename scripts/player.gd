@@ -35,10 +35,13 @@ var footstep_landed
 var current_collider: Node3D
 #endregion
 
+var player_config: SettingsConfig
+
 func _enter_tree() -> void:
 	# When the player is instantiated, set the authority to their ID, which
 	# is also the name the PlayerSpawner gave them
 	set_multiplayer_authority(int(name))
+	player_config = ResourceLoader.load("user://player_config.tres")
 
 func _ready() -> void:
 	# Only capture mouse and activate camera if this is the local player's instance
@@ -119,7 +122,10 @@ func player_movement(delta: float) -> void: #delta just takes in the delta float
 		headbob_time = 0.0
 	footstep_landed = is_on_floor()
 	
-	camera.transform.origin = headbob(headbob_time)
+	var camera_bob_offset = headbob(headbob_time)
+	
+	if player_config.enable_camera_bobbing:
+		camera.transform.origin = camera_bob_offset
 
 func camera_movement(mouse_motion_event: InputEvent) -> void:
 	# Rotate player horizontally
@@ -150,5 +156,6 @@ func headbob(time: float) -> Vector3:
 @rpc("any_peer", "call_local", "reliable")
 func play_footstep_sfx():
 	if footstep_audio:
+		footstep_audio.volume_linear = player_config.master_volume / 1000
 		footstep_audio.play()
 	
