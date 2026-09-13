@@ -10,8 +10,8 @@ extends Control
 #endregion
 
 #region Textures
-var slot_texture = preload("res://sprites/ui/slot.png")
-var selected_slot_texture = preload("res://sprites/ui/selected_slot.png")
+@export var slot_texture: Texture2D
+@export var selected_slot_texture: Texture2D
 #endregion
 
 #region Working Variables
