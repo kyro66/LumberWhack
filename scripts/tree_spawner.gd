@@ -16,8 +16,8 @@ extends MultiplayerSpawner
 @export var min_z: float = -100.0
 @export var max_z: float = 100.0
 
-@export var min_x: float = 50.0
-@export var max_x: float = 100.0
+@export var min_x: float = 30.0
+@export var max_x: float = 80.0
 
 @export var min_tree_scale: float = 2.0
 @export var max_tree_scale: float = 2.5
