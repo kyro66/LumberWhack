@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b464c7tehw7jv"]
+[gd_scene format=3 uid="uid://blk3ecjx4p0vx"]
 
 [ext_resource type="Script" uid="uid://csj4mqy4kmcos" path="res://scripts/ui/hud.gd" id="1_ektdj"]
 [ext_resource type="PackedScene" uid="uid://c8kbsw6h6afsm" path="res://prefabs/ui/slot.tscn" id="2_jtpgg"]

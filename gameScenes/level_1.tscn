@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://chpxwtuftyhwc" path="res://prefabs/trees/basic_tree.tscn" id="2_8h18b"]
 [ext_resource type="PackedScene" uid="uid://ea7cnsqce8nm" path="res://prefabs/sell_area.tscn" id="3_emb1p"]
 [ext_resource type="PackedScene" uid="uid://deh8mgqrl68qj" path="res://prefabs/npcs/seller.tscn" id="4_cytrd"]
-[ext_resource type="Script" uid="uid://d1dcsimkuw2d0" path="res://scripts/draggable.gd" id="5_g0fn4"]
+[ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="5_g0fn4"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3xpgj"]
 
@@ -65,10 +65,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40308, 0, -1.5410459)
 sell_area = NodePath("../SellArea2")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1633016480]
-script = ExtResource("5_g0fn4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1411081784]
 mesh = SubResource("CylinderMesh_3xd07")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2081347522]
 shape = SubResource("CapsuleShape3D_efvpj")
+
+[node name="DraggableComponent" parent="RigidBody3D" unique_id=1645514485 instance=ExtResource("5_g0fn4")]

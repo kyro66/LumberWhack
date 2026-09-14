@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://c8kbsw6h6afsm"]
 
+[ext_resource type="Texture2D" uid="uid://mi5kx76vwgx7" path="res://sprites/ui/slot.png" id="1_ic6gg"]
+[ext_resource type="Texture2D" uid="uid://cmhxfy78c6tvs" path="res://tools/dev_axe/dev_axe.png" id="2_4ougi"]
+
 [node name="Slot" type="PanelContainer" unique_id=203435267]
 custom_minimum_size = Vector2(64, 64)
 custom_maximum_size = Vector2(64, 64)
@@ -14,6 +17,17 @@ offset_right = 32.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1116271066]
+[node name="Background" type="TextureRect" parent="." unique_id=1116271066]
 layout_mode = 2
+texture = ExtResource("1_ic6gg")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=179867562]
+custom_maximum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_4ougi")
