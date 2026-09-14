@@ -24,6 +24,8 @@ var inventory: Array[ToolData] = []
 
 func _ready() -> void:
 	create_hotbar()
+	player_hud.visible = true
+	pause_menu.visible = false
 	MoneyManager.money_changed.connect(update_money)
 
 func _unhandled_input(event) -> void:
