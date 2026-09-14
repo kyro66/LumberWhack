@@ -20,7 +20,6 @@ func start_client(ip_address := IP_ADDRESS, port := PORT) -> void:
 	multiplayer.multiplayer_peer = peer
 	
 func _on_server_disconnected() -> void:
-	print("Server closed connection or went offline")
 	disconnect_from_server()
 
 func disconnect_from_server() -> void:

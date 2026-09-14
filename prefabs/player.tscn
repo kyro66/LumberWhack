@@ -28,6 +28,7 @@ size = Vector3(0.6513672, 0.22363281, 0.7694702)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf5fn"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1558535965 node_paths=PackedStringArray("camera", "hand", "raycast", "hud", "footstep_audio")]
+collision_layer = 2
 script = ExtResource("1_72ieh")
 camera = NodePath("Head/Camera3D")
 hand = NodePath("Head/Camera3D/Hand")

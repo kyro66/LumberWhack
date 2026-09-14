@@ -90,11 +90,8 @@ func request_add_item(item_path: String, target_player_id: int = -1):
 	var sender_id = multiplayer.get_remote_sender_id()
 	if sender_id == 0: sender_id = 1 # Requests from the host may come in as sender = 0
 	
-	print("Add item requested for %s from %d" % [load(item_path).name, sender_id])
-	
 	# Ensure non-authority clients aren't making requests for other peers
 	if sender_id != get_multiplayer_authority():
-		print("Unauthorized item request from peer %d" % sender_id)
 		return
 		
 	var item_resource = load(item_path)
