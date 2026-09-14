@@ -1,6 +1,5 @@
 extends Control
 
-
 #region Child References
 @export var player_hud: Control
 @export var hotbar: HFlowContainer

@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ckc8p720a6jtk" path="res://prefabs/player_spawner.tscn" id="1_3xpgj"]
 [ext_resource type="PackedScene" uid="uid://chpxwtuftyhwc" path="res://prefabs/trees/basic_tree.tscn" id="2_8h18b"]
 [ext_resource type="PackedScene" uid="uid://ea7cnsqce8nm" path="res://prefabs/sell_area.tscn" id="3_emb1p"]
+[ext_resource type="PackedScene" uid="uid://deh8mgqrl68qj" path="res://prefabs/npcs/seller.tscn" id="4_cytrd"]
+[ext_resource type="Script" uid="uid://d1dcsimkuw2d0" path="res://scripts/draggable.gd" id="5_g0fn4"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3xpgj"]
 
@@ -20,6 +22,10 @@ sky_material = SubResource("ProceduralSkyMaterial_d0u6y")
 [sub_resource type="Environment" id="Environment_g4v7s"]
 background_mode = 2
 sky = SubResource("Sky_yf5fn")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3xd07"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_efvpj"]
 
 [node name="Level1" type="Node3D" unique_id=487679356]
 
@@ -53,3 +59,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8578053, 0, 0.018268526)
 
 [node name="SellArea3" parent="." unique_id=546111480 instance=ExtResource("3_emb1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8578053, 0, 5.618641)
+
+[node name="Seller" parent="." unique_id=1904053443 node_paths=PackedStringArray("sell_area") instance=ExtResource("4_cytrd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.40308, 0, -1.5410459)
+sell_area = NodePath("../SellArea2")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1633016480]
+script = ExtResource("5_g0fn4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1411081784]
+mesh = SubResource("CylinderMesh_3xd07")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2081347522]
+shape = SubResource("CapsuleShape3D_efvpj")
