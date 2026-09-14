@@ -18,11 +18,13 @@ func _ready() -> void:
 	#throwable = false
 
 @rpc("any_peer", "call_local", "reliable")
-func request_attack(tool: ToolData) -> void:
+func request_attack(tool_path: String) -> void:
+	var tool = load(tool_path)
 	# Make sure the RPC was called to the server and not a client
 	if !multiplayer.is_server(): return
 	# Can't do it unless your holding an axe and the tree hasn't been chopped yet
-	if is_felled or tool.type == tool.ToolType.AXE: return
+	if is_felled or tool.type != tool.ToolType.AXE: return
+	
 	
 	health -= tool.power
 	if health <= 0: fell_tree()

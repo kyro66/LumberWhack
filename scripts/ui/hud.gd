@@ -18,7 +18,11 @@ extends Control
 var active_slot: int = -1
 var inv_size: int = 3
 var inventory: Array = []
+var held_item: ToolData = null
+var held_item_path: String
 #endregion
+
+@onready var player: CharacterBody3D = $".."
 
 func _ready() -> void:
 	create_hotbar()
@@ -63,7 +67,7 @@ func set_active_slot(selected_slot: int) -> void:
 		active_slot = -1
 	else:
 		active_slot = selected_slot
-		
+	
 	update_hotbar()
 
 func update_money(amount: int):
@@ -118,6 +122,15 @@ func update_hotbar() -> void:
 			slot_nodes[i].get_node("Icon").texture = inventory[i].icon
 		else:
 			slot_nodes[i].get_node("Icon").texture = null
+	
+	if inventory[active_slot]:
+		held_item = inventory[active_slot]
+		held_item_path = inventory[active_slot].resource_path
+	else:
+		held_item = null
+		held_item_path = ""
+		
+	player.update_held_item_display(held_item_path)
 	
 func _on_quit_game_button_down() -> void:
 	get_tree().quit()

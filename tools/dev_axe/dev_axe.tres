@@ -9,6 +9,6 @@ script = ExtResource("1_pdub6")
 name = "Dev Axe"
 icon = ExtResource("1_21kx8")
 scene = ExtResource("1_oa677")
-power = 9001
+power = 50
 value = 1
 metadata/_custom_type_script = "uid://fga3fryufmca"

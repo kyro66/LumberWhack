@@ -101,10 +101,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			current_collider.interact()
 			
 	if event.is_action_pressed("attack"): 
-		if current_draggable == null:
+		if current_draggable == null and hud.held_item == null:
 			_try_grab()
-		elif current_collider.has_method("request_attack"):
-			current_collider.request_attack.rpc_id(1)
+		elif current_collider and current_collider.has_method("request_attack"):
+			current_collider.request_attack.rpc_id(1, hud.held_item_path)
 	if event.is_action_released("attack"):
 		if current_draggable != null:
 			_release_grab()
@@ -204,3 +204,19 @@ func _release_grab() -> void:
 	if current_draggable != null:
 		current_draggable.request_end_drag.rpc()
 		current_draggable = null
+
+@rpc("any_peer", "call_local", "reliable")
+func sync_held_item_mesh(item_path: String) -> void:
+	for child in hand.get_children(): child.queue_free()
+	var item_mesh = null
+	
+	if item_path != "":
+		var item_res = load(item_path)
+		if item_res and item_res.scene:
+			item_mesh = item_res.scene.instantiate()
+	else:
+		item_mesh = load("res://tools/hand/empty_hand.tscn").instantiate()
+	hand.add_child(item_mesh)
+			
+func update_held_item_display(item_path: String) -> void:
+	sync_held_item_mesh.rpc(item_path)
