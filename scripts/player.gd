@@ -13,8 +13,9 @@ const JUMP_VELOCITY = 4.5
 
 #region Child References
 @export var camera: Camera3D
-@onready var hand: Node3D = $Head/Camera3D/Hand
+@export var hand: Node3D
 @export var raycast: RayCast3D
+@export var hud: Control
 #endregion
 
 #region Head bob
@@ -31,16 +32,21 @@ var footstep_audio_can_play = true
 var footstep_landed
 #endregion
 
-#region collider
-var current_collider: Node3D
+#region Dragging
+@export var hold_distance: float = 2.5
+var current_draggable: DraggableComponent = null
 #endregion
 
+var current_collider: Node3D
 var player_config: SettingsConfig
 
 func _enter_tree() -> void:
 	# When the player is instantiated, set the authority to their ID, which
 	# is also the name the PlayerSpawner gave them
-	set_multiplayer_authority(int(name))
+	var player_id := int(name)
+	set_multiplayer_authority(player_id)
+	if hud: hud.set_multiplayer_authority(player_id)
+	
 	player_config = ResourceLoader.load("user://player_config.tres")
 
 func _ready() -> void:
@@ -48,8 +54,13 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		camera.current = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if hud:
+			hud.visible = true
 	else:
 		camera.current = false
+		if hud:
+			hud.visible = false
+			hud.process_mode = Node.PROCESS_MODE_DISABLED
 		
 func _process(_delta: float) -> void:
 	current_collider = raycast.get_collider()
@@ -59,9 +70,8 @@ func _process(_delta: float) -> void:
 	
 	
 	if not current_collider: return
-	if current_collider.has_method("interact"):
-		#TODO: Display E to interact
-		pass
+	
+	
 	
 	
 
@@ -70,6 +80,10 @@ func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
 	player_movement(delta)
+	
+	if current_draggable != null:
+		var target_pos := camera.global_position - camera.global_transform.basis.z * hold_distance
+		current_draggable.request_update_drag.rpc(target_pos)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Ignore input events for remote peers
@@ -81,12 +95,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Process mouse motion
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_movement(event)
-		
-	if !current_collider: return
 	
 	if event.is_action_pressed("interact"):
-		if current_collider.has_method('interact'):
+		if current_collider and current_collider.has_method('interact'):
 			current_collider.interact()
+			
+	if event.is_action_pressed("attack"): 
+		if current_draggable == null and hud.held_item == null:
+			_try_grab()
+		elif current_collider and current_collider.has_method("request_attack"):
+			current_collider.request_attack.rpc_id(1, hud.held_item_path)
+	if event.is_action_released("attack"):
+		if current_draggable != null:
+			_release_grab()
+			
+	if event.is_action_pressed("debug 1"):
+		hud.request_add_item.rpc_id(1, "res://tools/dev_axe/dev_axe.tres")
+		print("Requesting give axe")
 
 func player_movement(delta: float) -> void: #delta just takes in the delta float from physics process
 	# Add the gravity.
@@ -158,4 +183,40 @@ func play_footstep_sfx():
 	if footstep_audio:
 		footstep_audio.volume_linear = player_config.master_volume / 1000
 		footstep_audio.play()
+		
+func _try_grab() -> void:
+	if not raycast.is_colliding(): return
 	
+	var collider := raycast.get_collider()
+	if collider == null: return
+	
+	# Locate the component on the hit body
+	var component := collider.get_node_or_null("DraggableComponent") as DraggableComponent
+	if component != null:
+		print("start drag")
+		current_draggable = component
+		var hit_point := raycast.get_collision_point()
+		
+		# Request drag start on server
+		current_draggable.request_begin_drag.rpc(hit_point)
+	
+func _release_grab() -> void:
+	if current_draggable != null:
+		current_draggable.request_end_drag.rpc()
+		current_draggable = null
+
+@rpc("any_peer", "call_local", "reliable")
+func sync_held_item_mesh(item_path: String) -> void:
+	for child in hand.get_children(): child.queue_free()
+	var item_mesh = null
+	
+	if item_path != "":
+		var item_res = load(item_path)
+		if item_res and item_res.scene:
+			item_mesh = item_res.scene.instantiate()
+	else:
+		item_mesh = load("res://tools/hand/empty_hand.tscn").instantiate()
+	hand.add_child(item_mesh)
+			
+func update_held_item_display(item_path: String) -> void:
+	sync_held_item_mesh.rpc(item_path)

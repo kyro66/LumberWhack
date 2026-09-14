@@ -21,6 +21,9 @@ material = SubResource("StandardMaterial3D_3gngh")
 size = Vector3(0.06439209, 0.18920898, 0.26660538)
 
 [node name="DevAxe" type="RigidBody3D" unique_id=1663944503]
+collision_layer = 0
+collision_mask = 0
+freeze = true
 
 [node name="HandleMesh" type="MeshInstance3D" parent="." unique_id=1504901242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)

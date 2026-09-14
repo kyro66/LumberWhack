@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://j0yh4v5u1iuh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1sgde"]
+albedo_color = Color(0.4360575, 2.5569461e-06, 1.1792034e-06, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_1sgde")
+radius = 0.0625
+height = 0.23406982
+
+[node name="Node3D" type="MeshInstance3D" unique_id=1517085911]
+transform = Transform3D(-0.2729402, -0.46758467, 0.84075445, 0.94395006, -0.29880628, 0.1402605, 0.18563907, 0.831913, 0.52293277, 0.057417855, 0.03490962, -0.097448625)
+mesh = SubResource("CapsuleMesh_g4v7s")

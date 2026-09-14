@@ -15,11 +15,14 @@ extends Control
 #endregion
 
 #region Working Variables
-var active_slot: int = 0
-var last_active_slot: int = 0
+var active_slot: int = -1
 var inv_size: int = 3
-var inventory: Array[ToolData] = []
+var inventory: Array = []
+var held_item: ToolData = null
+var held_item_path: String
 #endregion
+
+@onready var player: CharacterBody3D = $".."
 
 func _ready() -> void:
 	create_hotbar()
@@ -61,24 +64,78 @@ func create_hotbar() -> void:
 		var new_slot = slot.instantiate()
 		new_slot.name = str(i)
 		hotbar.add_child(new_slot)
+		inventory.append(null)
+	update_hotbar()
 
 func set_active_slot(selected_slot: int) -> void:
-	last_active_slot = active_slot
-	active_slot = selected_slot
+	if active_slot == selected_slot:
+		active_slot = -1
+	else:
+		active_slot = selected_slot
 	
-	var last_active = hotbar.get_node(str(last_active_slot))
-	var active = hotbar.get_node(str(active_slot))
-	
-	if last_active:
-		var tex = last_active.get_node("TextureRect")
-		if tex: tex.texture = slot_texture
-		
-	if active:
-		var tex = active.get_node("TextureRect")
-		if tex: tex.texture = selected_slot_texture
+	update_hotbar()
 
 func update_money(amount: int):
 	money_label.text = "$%d" % amount
+
+@rpc("any_peer", "call_local", "reliable")
+func request_add_item(item_path: String) -> void:
+	if not multiplayer.is_server(): return
+	
+	var sender_id = multiplayer.get_remote_sender_id()
+	if sender_id == 0: sender_id = 1 # Requests from the host may come in as sender = 0
+	
+	print("Add item requested for %s from %d" % [load(item_path).name, sender_id])
+	
+	# Ensure non-authority clients aren't making requests for other peers
+	if sender_id != get_multiplayer_authority():
+		print("Unauthorized item request from peer %d" % sender_id)
+		return
+		
+	var item_resource = load(item_path)
+	var target_slot = -1
+	
+	# Server validates and applies the item additions
+	if active_slot != -1 and inventory[active_slot] == null:
+		target_slot = active_slot
+	else:
+		for i in range(inv_size):
+			if inventory[i] == null:
+				target_slot = i
+				break
+				
+	#if space was found, tell the target peers client to add it
+	if target_slot != -1:
+		inventory[target_slot] = item_resource
+		sync_slot_update.rpc_id(sender_id, target_slot, item_path)
+				
+@rpc("any_peer", "call_local", "reliable")
+func sync_slot_update(slot_index: int, item_path: String) -> void:
+	inventory[slot_index] = load(item_path)
+	update_hotbar()
+	
+func update_hotbar() -> void:
+	var slot_nodes = hotbar.get_children()
+	
+	for i in range(inv_size):
+		if i == active_slot: # Set the slot backgrounds to the default / active texture
+			slot_nodes[i].get_node("Background").texture = selected_slot_texture
+		else:
+			slot_nodes[i].get_node("Background").texture = slot_texture
+		
+		if inventory[i] != null and inventory[i].icon:
+			slot_nodes[i].get_node("Icon").texture = inventory[i].icon
+		else:
+			slot_nodes[i].get_node("Icon").texture = null
+	
+	if inventory[active_slot]:
+		held_item = inventory[active_slot]
+		held_item_path = inventory[active_slot].resource_path
+	else:
+		held_item = null
+		held_item_path = ""
+		
+	player.update_held_item_display(held_item_path)
 	
 func _on_quit_game_button_down() -> void:
 	get_tree().quit()
