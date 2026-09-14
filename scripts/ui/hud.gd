@@ -139,12 +139,13 @@ func update_hotbar() -> void:
 		else:
 			slot_nodes[i].get_node("Icon").texture = null
 	
-	if inventory[active_slot]:
-		held_item = inventory[active_slot]
-		held_item_path = inventory[active_slot].resource_path
-	else:
-		held_item = null
-		held_item_path = ""
+	if active_slot < inventory.size():
+		if inventory[active_slot]:
+			held_item = inventory[active_slot]
+			held_item_path = inventory[active_slot].resource_path
+		else:
+			held_item = null
+			held_item_path = ""
 		
 	player.update_held_item_display(held_item_path)
 
