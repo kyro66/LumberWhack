@@ -64,9 +64,10 @@ target_position = Vector3(0, 0, -2.5)
 collide_with_areas = true
 
 [node name="Hand" type="Node3D" parent="Head/Camera3D" unique_id=625422728]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35059553, -0.82508767, -0.5652064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4336046, -0.56275034, -0.5652064)
 
 [node name="Node3D" parent="Head/Camera3D/Hand" unique_id=1517085911 instance=ExtResource("3_1txc5")]
+transform = Transform3D(-0.2729402, -0.46758467, 0.84075445, 0.94395006, -0.29880628, 0.1402605, 0.18563907, 0.831913, 0.52293277, 0.2662549, 0.23786402, -0.09744865)
 
 [node name="FootstepAudio" type="AudioStreamPlayer3D" parent="." unique_id=1809094942]
 stream = ExtResource("5_ht1c8")
