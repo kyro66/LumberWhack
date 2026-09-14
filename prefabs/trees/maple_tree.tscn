@@ -65,6 +65,7 @@ properties/5/replication_mode = 1
 freeze = true
 script = ExtResource("1_rodm1")
 value = 120
+health = 1000
 
 [node name="TrunkCollider" type="CollisionShape3D" parent="." unique_id=61257963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2467041, 0)
