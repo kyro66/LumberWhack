@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ci7kxtjevifm0"]
 
 [ext_resource type="Script" uid="uid://bg2cot6fpeort" path="res://scripts/player.gd" id="1_72ieh"]
-[ext_resource type="PackedScene" uid="uid://b464c7tehw7jv" path="res://prefabs/hud.tscn" id="2_4dohe"]
+[ext_resource type="PackedScene" uid="uid://b464c7tehw7jv" path="res://prefabs/ui/hud.tscn" id="2_4dohe"]
 [ext_resource type="AudioStream" uid="uid://c3h3ium0c1acg" path="res://sfx/foodsteps/grass.mp3" id="5_ht1c8"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4dohe"]
@@ -23,9 +23,10 @@ size = Vector3(0.6513672, 0.22363281, 0.7694702)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yf5fn"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1558535965 node_paths=PackedStringArray("camera", "footstep_audio")]
+[node name="Player" type="CharacterBody3D" unique_id=1558535965 node_paths=PackedStringArray("camera", "raycast", "footstep_audio")]
 script = ExtResource("1_72ieh")
 camera = NodePath("Head/Camera3D")
+raycast = NodePath("Head/Camera3D/RayCast3D")
 footstep_audio = NodePath("FootstepAudio")
 metadata/value = 100.0
 
@@ -51,11 +52,13 @@ shape = SubResource("CapsuleShape3D_yf5fn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7332089, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=530030136]
+physics_interpolation_mode = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.036967516, -0.032396317)
 cull_mask = 1048063
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1486350231]
 target_position = Vector3(0, 0, -2.5)
+collide_with_areas = true
 
 [node name="Hand" type="Node3D" parent="Head/Camera3D" unique_id=625422728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7370753)

@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b464c7tehw7jv"]
 
-[ext_resource type="Script" uid="uid://csj4mqy4kmcos" path="res://scripts/ui/hud.gd" id="1_73jnp"]
-[ext_resource type="PackedScene" uid="uid://c8kbsw6h6afsm" path="res://prefabs/ui/slot.tscn" id="3_d7ypv"]
-[ext_resource type="Texture2D" uid="uid://mi5kx76vwgx7" path="res://sprites/ui/slot.png" id="3_env85"]
-[ext_resource type="Texture2D" uid="uid://c6nhu3phxlwqb" path="res://sprites/ui/selected_slot.png" id="4_mbxvq"]
-[ext_resource type="PackedScene" uid="uid://chfvoqoqygwn6" path="res://prefabs/ui/settings.tscn" id="5_env85"]
+[ext_resource type="Script" uid="uid://csj4mqy4kmcos" path="res://scripts/ui/hud.gd" id="1_ektdj"]
+[ext_resource type="PackedScene" uid="uid://c8kbsw6h6afsm" path="res://prefabs/ui/slot.tscn" id="2_jtpgg"]
+[ext_resource type="Texture2D" uid="uid://mi5kx76vwgx7" path="res://sprites/ui/slot.png" id="3_mi8tf"]
+[ext_resource type="Texture2D" uid="uid://c6nhu3phxlwqb" path="res://sprites/ui/selected_slot.png" id="4_ggpsi"]
+[ext_resource type="PackedScene" uid="uid://chfvoqoqygwn6" path="res://prefabs/ui/settings.tscn" id="5_3xm3k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3xd07"]
 font_size = 32
@@ -30,14 +30,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_73jnp")
+script = ExtResource("1_ektdj")
 player_hud = NodePath("PlayerHUD")
 hotbar = NodePath("PlayerHUD/Hotbar")
-slot = ExtResource("3_d7ypv")
+slot = ExtResource("2_jtpgg")
 money_label = NodePath("PlayerHUD/MoneyLabel")
 pause_menu = NodePath("PauseMenu")
-slot_texture = ExtResource("3_env85")
-selected_slot_texture = ExtResource("4_mbxvq")
+slot_texture = ExtResource("3_mi8tf")
+selected_slot_texture = ExtResource("4_ggpsi")
 
 [node name="PlayerHUD" type="Control" parent="." unique_id=1952344724]
 layout_mode = 1
@@ -80,7 +80,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Settings" parent="PauseMenu" unique_id=37033088 instance=ExtResource("5_env85")]
+[node name="Settings" parent="PauseMenu" unique_id=37033088 instance=ExtResource("5_3xm3k")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -1,6 +1,5 @@
 extends Control
 
-
 #region Child References
 @export var player_hud: Control
 @export var hotbar: HFlowContainer
@@ -27,6 +26,9 @@ func _ready() -> void:
 	player_hud.visible = true
 	pause_menu.visible = false
 	MoneyManager.money_changed.connect(update_money)
+	
+	pause_menu.visible = false
+	player_hud.visible = true
 
 func _unhandled_input(event) -> void:
 	if event.is_action_pressed("pause"): toggle_pause_menu()

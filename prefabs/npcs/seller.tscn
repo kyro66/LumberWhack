@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://deh8mgqrl68qj"]
+
+[ext_resource type="Script" uid="uid://c74eftcvo51s0" path="res://scripts/seller.gd" id="1_ixjcn"]
+[ext_resource type="PackedScene" uid="uid://jok23us3j4po" path="res://prefabs/npcs/Blacksmith.fbx" id="2_8m113"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ub2mi"]
+
+[node name="Seller" type="StaticBody3D" unique_id=885628351]
+script = ExtResource("1_ixjcn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1795219935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_ub2mi")
+
+[node name="Blacksmith" parent="." unique_id=319107899 instance=ExtResource("2_8m113")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048218578, 0, -0.14451921)

@@ -14,6 +14,7 @@ const JUMP_VELOCITY = 4.5
 #region Child References
 @export var camera: Camera3D
 @onready var hand: Node3D = $Head/Camera3D/Hand
+@export var raycast: RayCast3D
 #endregion
 
 #region Head bob
@@ -28,6 +29,10 @@ var headbob_time := 0.0
 @export var footstep_audio: AudioStreamPlayer3D
 var footstep_audio_can_play = true
 var footstep_landed
+#endregion
+
+#region collider
+var current_collider: Node3D
 #endregion
 
 var player_config: SettingsConfig
@@ -45,6 +50,20 @@ func _ready() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
 		camera.current = false
+		
+func _process(_delta: float) -> void:
+	current_collider = raycast.get_collider()
+	
+	
+	
+	
+	
+	if not current_collider: return
+	if current_collider.has_method("interact"):
+		#TODO: Display E to interact
+		pass
+	
+	
 
 func _physics_process(delta: float) -> void:
 	# Ignore remote peers
@@ -62,6 +81,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Process mouse motion
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_movement(event)
+		
+	if !current_collider: return
+	
+	if event.is_action_pressed("interact"):
+		if current_collider.has_method('interact'):
+			current_collider.interact()
 
 func player_movement(delta: float) -> void: #delta just takes in the delta float from physics process
 	# Add the gravity.

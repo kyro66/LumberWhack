@@ -21,7 +21,7 @@ func _on_return_pressed() -> void:
 	get_tree().change_scene_to_file(MAIN_MENU_PATH)
 	
 func _on_sp_pressed() -> void:
-	# Start a single player instance
+	# Start a singleplayer server
 	NetworkHandler.start_server(0, 1)
 	get_tree().change_scene_to_file(LEVEL_1_PATH)
 		
