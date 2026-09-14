@@ -22,6 +22,11 @@ var held_item: ToolData = null
 var held_item_path: String
 #endregion
 
+#region Crosshair
+@export var crosshair_textures: Array[Texture2D]
+@export var crosshair: TextureRect
+#endregion
+
 @onready var player: CharacterBody3D = $".."
 
 func _ready() -> void:
@@ -188,3 +193,6 @@ func _on_quit_game_button_down() -> void:
 
 func _on_return_to_game_button_down() -> void:
 	toggle_pause_menu()
+	
+func update_crosshair(crosshair_state: int):
+	crosshair.texture = crosshair_textures[crosshair_state]

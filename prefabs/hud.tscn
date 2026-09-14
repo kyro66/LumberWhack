@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c8kbsw6h6afsm" path="res://prefabs/ui/slot.tscn" id="3_d7ypv"]
 [ext_resource type="Texture2D" uid="uid://mi5kx76vwgx7" path="res://sprites/ui/slot.png" id="3_env85"]
 [ext_resource type="Texture2D" uid="uid://c6nhu3phxlwqb" path="res://sprites/ui/selected_slot.png" id="4_mbxvq"]
+[ext_resource type="Texture2D" uid="uid://cyqg0dbagg1aq" path="res://sprites/ui/crosshair.png" id="5_7ujfc"]
 [ext_resource type="PackedScene" uid="uid://chfvoqoqygwn6" path="res://prefabs/ui/settings.tscn" id="5_env85"]
+[ext_resource type="Texture2D" uid="uid://bhp8ygq4two4o" path="res://sprites/ui/crosshair_interact.png" id="6_xuq52"]
+[ext_resource type="Texture2D" uid="uid://jjw4w3qvw1at" path="res://sprites/ui/crosshair_attack.png" id="7_qvtnd"]
+[ext_resource type="Texture2D" uid="uid://b8wktyn8ap2g8" path="res://sprites/ui/crosshair_drag.png" id="8_r2sc3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3xd07"]
 font_size = 32
@@ -22,7 +26,7 @@ shadow_size = 20
 shadow_color = Color(0, 0, 0, 0.827451)
 shadow_offset = Vector2(6, 6)
 
-[node name="HUD" type="Control" unique_id=210433657 node_paths=PackedStringArray("player_hud", "hotbar", "money_label", "pause_menu")]
+[node name="HUD" type="Control" unique_id=210433657 node_paths=PackedStringArray("player_hud", "hotbar", "money_label", "pause_menu", "crosshair")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +42,8 @@ money_label = NodePath("PlayerHUD/MoneyLabel")
 pause_menu = NodePath("PauseMenu")
 slot_texture = ExtResource("3_env85")
 selected_slot_texture = ExtResource("4_mbxvq")
+crosshair_textures = Array[Texture2D]([ExtResource("5_7ujfc"), ExtResource("7_qvtnd"), ExtResource("6_xuq52"), ExtResource("8_r2sc3")])
+crosshair = NodePath("PlayerHUD/Crosshair")
 
 [node name="PlayerHUD" type="Control" parent="." unique_id=1952344724]
 layout_mode = 1
@@ -71,6 +77,21 @@ offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
+
+[node name="Crosshair" type="TextureRect" parent="PlayerHUD" unique_id=1035094083]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_7ujfc")
 
 [node name="PauseMenu" type="Control" parent="." unique_id=1057384034]
 visible = false

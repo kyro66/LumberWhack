@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://d32d1kh3txw3r"]
+
+[ext_resource type="Script" uid="uid://cht0byvrbnmwa" path="res://scripts/tree.gd" id="1_sqnsr"]
+[ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="2_ot1gv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yf5fn"]
+height = 2.5
+radius = 0.2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4q68t"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y5m4n"]
+noise = SubResource("FastNoiseLite_4q68t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0u6y"]
+albedo_color = Color(0.7581918, 0.7581918, 0.7581917, 1)
+albedo_texture = SubResource("NoiseTexture2D_y5m4n")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_d0u6y")
+top_radius = 0.1
+bottom_radius = 0.3
+height = 2.5
+
+[sub_resource type="Gradient" id="Gradient_xbpim"]
+colors = PackedColorArray(0.48962224, 0.48962224, 0.48962218, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ywuu1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t44wi"]
+noise = SubResource("FastNoiseLite_ywuu1")
+color_ramp = SubResource("Gradient_xbpim")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gngh"]
+albedo_color = Color(0, 0.6342165, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_t44wi")
+
+[sub_resource type="SphereMesh" id="SphereMesh_57qmd"]
+material = SubResource("StandardMaterial3D_3gngh")
+radius = 1.0
+height = 1.8
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y5m4n"]
+properties/0/path = NodePath(".:health")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:is_felled")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:freeze")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:rotation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Canopy:visible")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
+[node name="BirchTree" type="RigidBody3D" unique_id=1134569236]
+freeze = true
+script = ExtResource("1_sqnsr")
+value = 60
+
+[node name="TrunkCollider" type="CollisionShape3D" parent="." unique_id=61257963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2467041, 0)
+shape = SubResource("CylinderShape3D_yf5fn")
+
+[node name="Trunk" type="MeshInstance3D" parent="." unique_id=1326965908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Canopy" type="MeshInstance3D" parent="." unique_id=1059954754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3165505, 0)
+mesh = SubResource("SphereMesh_57qmd")
+
+[node name="DraggableComponent" parent="." unique_id=1645514485 instance=ExtResource("2_ot1gv")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1715040076]
+replication_config = SubResource("SceneReplicationConfig_y5m4n")

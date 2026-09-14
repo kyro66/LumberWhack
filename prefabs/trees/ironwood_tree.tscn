@@ -1,14 +1,25 @@
-[gd_scene format=3 uid="uid://chpxwtuftyhwc"]
+[gd_scene format=3 uid="uid://nkp1jo4oo68u"]
 
-[ext_resource type="Script" uid="uid://cht0byvrbnmwa" path="res://scripts/tree.gd" id="1_hoto1"]
-[ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="2_y5m4n"]
+[ext_resource type="Script" uid="uid://cht0byvrbnmwa" path="res://scripts/tree.gd" id="1_4e8uh"]
+[ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="2_jygxe"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yf5fn"]
 height = 2.5
 radius = 0.2
 
+[sub_resource type="Gradient" id="Gradient_wia7d"]
+offsets = PackedFloat32Array(0.34057972, 1)
+colors = PackedColorArray(0.19793725, 0.19793722, 0.19793722, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4q68t"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y5m4n"]
+noise = SubResource("FastNoiseLite_4q68t")
+color_ramp = SubResource("Gradient_wia7d")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0u6y"]
-albedo_color = Color(0.41243505, 0.21255097, 0.10664701, 1)
+albedo_color = Color(0.66538143, 0.6783986, 0.67520094, 1)
+albedo_texture = SubResource("NoiseTexture2D_y5m4n")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
 material = SubResource("StandardMaterial3D_d0u6y")
@@ -16,13 +27,24 @@ top_radius = 0.1
 bottom_radius = 0.3
 height = 2.5
 
+[sub_resource type="Gradient" id="Gradient_xbpim"]
+colors = PackedColorArray(0.14767182, 0.14767179, 0.14767179, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ywuu1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t44wi"]
+noise = SubResource("FastNoiseLite_ywuu1")
+color_ramp = SubResource("Gradient_xbpim")
+seamless = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gngh"]
-albedo_color = Color(1.504086e-07, 0.36472902, 3.85046e-07, 1)
+albedo_color = Color(0.1188973, 0.6082811, 0.698968, 1)
+albedo_texture = SubResource("NoiseTexture2D_t44wi")
 
 [sub_resource type="SphereMesh" id="SphereMesh_57qmd"]
 material = SubResource("StandardMaterial3D_3gngh")
 radius = 1.0
-height = 1.8
+height = 2.2
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y5m4n"]
 properties/0/path = NodePath(".:health")
@@ -44,9 +66,10 @@ properties/5/path = NodePath("Canopy:visible")
 properties/5/spawn = true
 properties/5/replication_mode = 1
 
-[node name="BasicTree" type="RigidBody3D" unique_id=1134569236]
+[node name="IronwoodTree" type="RigidBody3D" unique_id=1134569236]
 freeze = true
-script = ExtResource("1_hoto1")
+script = ExtResource("1_4e8uh")
+value = 400
 
 [node name="TrunkCollider" type="CollisionShape3D" parent="." unique_id=61257963]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2467041, 0)
@@ -57,10 +80,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 mesh = SubResource("CylinderMesh_g4v7s")
 
 [node name="Canopy" type="MeshInstance3D" parent="." unique_id=1059954754]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7165506, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3165505, 0)
 mesh = SubResource("SphereMesh_57qmd")
 
-[node name="DraggableComponent" parent="." unique_id=1645514485 instance=ExtResource("2_y5m4n")]
+[node name="DraggableComponent" parent="." unique_id=1645514485 instance=ExtResource("2_jygxe")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1715040076]
 replication_config = SubResource("SceneReplicationConfig_y5m4n")

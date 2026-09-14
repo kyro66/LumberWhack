@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://v1tjh5si6mcq"]
 
 [ext_resource type="PackedScene" uid="uid://ckc8p720a6jtk" path="res://prefabs/player_spawner.tscn" id="1_3xpgj"]
-[ext_resource type="PackedScene" uid="uid://cybw72b3ybec3" path="res://prefabs/tree_spawner.tscn" id="2_nqfy6"]
+[ext_resource type="PackedScene" uid="uid://cybw72b3ybec3" path="res://prefabs/trees/tree_spawner.tscn" id="2_nqfy6"]
 [ext_resource type="PackedScene" uid="uid://ea7cnsqce8nm" path="res://prefabs/sell_area.tscn" id="3_emb1p"]
 [ext_resource type="PackedScene" uid="uid://dgk1fguklk6fb" path="res://prefabs/dropped_item_spawner.tscn" id="3_fxye6"]
 [ext_resource type="PackedScene" uid="uid://deh8mgqrl68qj" path="res://prefabs/npcs/seller.tscn" id="4_cytrd"]
@@ -56,6 +56,9 @@ sky = SubResource("Sky_yf5fn")
 [node name="PlayerSpawner" parent="." unique_id=947221261 instance=ExtResource("1_3xpgj")]
 
 [node name="TreeSpawner" parent="." unique_id=510669663 instance=ExtResource("2_nqfy6")]
+spawn_radius = null
+spawn_density = null
+exclusion_radius = null
 
 [node name="DroppedItemSpawner" parent="." unique_id=400808163 instance=ExtResource("3_fxye6")]
 

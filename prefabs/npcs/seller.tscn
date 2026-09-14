@@ -14,3 +14,12 @@ shape = SubResource("CapsuleShape3D_ub2mi")
 
 [node name="Blacksmith" parent="." unique_id=319107899 instance=ExtResource("2_8m113")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.048218578, 0, -0.14451921)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=655708963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
+billboard = 1
+text = "Hey! Stop that."
+
+[node name="Timer" type="Timer" parent="." unique_id=1843030495]
+wait_time = 1.5

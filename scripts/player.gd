@@ -101,6 +101,8 @@ func _physics_process(delta: float) -> void:
 	if current_draggable != null:
 		var target_pos := camera.global_position - camera.global_transform.basis.z * hold_distance
 		current_draggable.request_update_drag.rpc(target_pos)
+		
+	crosshair_check()
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Ignore input events for remote peers
@@ -118,11 +120,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			hud.request_drop_item.rpc_id(1, hud.active_slot)
 	
 	if event.is_action_pressed("interact"):
-		if current_collider and current_collider.has_method('interact'):
-			current_collider.interact(get_multiplayer_authority())
-		else:
-			var pickup := current_collider.get_node_or_null("PickupComponent") as PickupComponent
-			if pickup != null: pickup.interact(get_multiplayer_authority())
+		if current_collider:
+			if current_collider.has_method('interact'):
+				current_collider.interact(get_multiplayer_authority())
+			else:
+				var pickup := current_collider.get_node_or_null("PickupComponent") as PickupComponent
+				if pickup != null: pickup.interact(get_multiplayer_authority())
 			
 	if event.is_action_pressed("attack"): 
 		play_hand_swing.rpc()
@@ -275,3 +278,15 @@ func play_hand_swing() -> void:
 		hand_rest_transform,
 		swing_return_time
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
+func crosshair_check():
+	var ch_state = 0
+	if current_collider:
+		if current_collider.has_method("request_attack"):
+			ch_state = 1
+		if current_collider.has_method("interact") or current_collider.get_node_or_null("PickupComponent") != null:
+			ch_state = 2
+		if current_collider.get_node_or_null("DraggableComponent") != null and not hud.held_item:
+			ch_state = 3
+		
+	hud.update_crosshair(ch_state)

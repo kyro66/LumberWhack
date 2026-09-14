@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cybw72b3ybec3"]
+
+[ext_resource type="Script" uid="uid://8aswxa775pnd" path="res://scripts/tree_spawner.gd" id="1_x7oks"]
+[ext_resource type="PackedScene" uid="uid://chpxwtuftyhwc" path="res://prefabs/trees/pine_tree.tscn" id="2_0ptsq"]
+[ext_resource type="PackedScene" uid="uid://d32d1kh3txw3r" path="res://prefabs/trees/birch_tree.tscn" id="3_8mb2h"]
+[ext_resource type="PackedScene" uid="uid://dugq8x6w6hye" path="res://prefabs/trees/maple_tree.tscn" id="4_nlg5g"]
+[ext_resource type="PackedScene" uid="uid://bux1720p0etah" path="res://prefabs/trees/oak_tree.tscn" id="5_ruih8"]
+[ext_resource type="PackedScene" uid="uid://nkp1jo4oo68u" path="res://prefabs/trees/ironwood_tree.tscn" id="6_1b03f"]
+
+[node name="TreeSpawner" type="MultiplayerSpawner" unique_id=510669663]
+_spawnable_scenes = PackedStringArray("uid://chpxwtuftyhwc")
+spawn_path = NodePath(".")
+script = ExtResource("1_x7oks")
+tree_scenes = Array[PackedScene]([ExtResource("2_0ptsq"), ExtResource("3_8mb2h"), ExtResource("4_nlg5g"), ExtResource("5_ruih8"), ExtResource("6_1b03f")])
