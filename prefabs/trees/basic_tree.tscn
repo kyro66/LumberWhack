@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://chpxwtuftyhwc"]
 
-[ext_resource type="Script" uid="uid://cht0byvrbnmwa" path="res://scripts/tree.gd" id="1_hoto1"]
+[ext_resource type="Script" uid="uid://ch1b5ws8rtgt0" path="res://scripts/tree.gd" id="1_hoto1"]
 [ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="2_y5m4n"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yf5fn"]

@@ -13,8 +13,9 @@ const JUMP_VELOCITY = 4.5
 
 #region Child References
 @export var camera: Camera3D
-@onready var hand: Node3D = $Head/Camera3D/Hand
+@export var hand: Node3D
 @export var raycast: RayCast3D
+@export var hud: Control
 #endregion
 
 #region Head bob
@@ -31,19 +32,21 @@ var footstep_audio_can_play = true
 var footstep_landed
 #endregion
 
+#region Dragging
 @export var hold_distance: float = 2.5
 var current_draggable: DraggableComponent = null
-
-#region collider
-var current_collider: Node3D
 #endregion
 
+var current_collider: Node3D
 var player_config: SettingsConfig
 
 func _enter_tree() -> void:
 	# When the player is instantiated, set the authority to their ID, which
 	# is also the name the PlayerSpawner gave them
-	set_multiplayer_authority(int(name))
+	var player_id := int(name)
+	set_multiplayer_authority(player_id)
+	if hud: hud.set_multiplayer_authority(player_id)
+	
 	player_config = ResourceLoader.load("user://player_config.tres")
 
 func _ready() -> void:
@@ -51,8 +54,13 @@ func _ready() -> void:
 	if is_multiplayer_authority():
 		camera.current = true
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if hud:
+			hud.visible = true
 	else:
 		camera.current = false
+		if hud:
+			hud.visible = false
+			hud.process_mode = Node.PROCESS_MODE_DISABLED
 		
 func _process(_delta: float) -> void:
 	current_collider = raycast.get_collider()
@@ -95,9 +103,15 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"): 
 		if current_draggable == null:
 			_try_grab()
+		elif current_collider.has_method("request_attack"):
+			current_collider.request_attack.rpc_id(1)
 	if event.is_action_released("attack"):
 		if current_draggable != null:
 			_release_grab()
+			
+	if event.is_action_pressed("debug 1"):
+		hud.request_add_item.rpc_id(1, "res://tools/dev_axe/dev_axe.tres")
+		print("Requesting give axe")
 
 func player_movement(delta: float) -> void: #delta just takes in the delta float from physics process
 	# Add the gravity.
