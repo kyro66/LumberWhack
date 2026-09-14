@@ -13,7 +13,7 @@ var body: RigidBody3D
 
 func _ready() -> void:
 	body = get_parent() as RigidBody3D
-	print(get_parent())
+	
 	assert(body != null, "DraggableComponent must be a child of a RigidBody3D")
 	
 	if not body.has_node("MultiplayerSynchronizer"):

@@ -47,7 +47,7 @@ func _on_body_entered(node: Node3D):
 	# add the value to the sell queue value total
 	sell_queue_value += node.get_meta('value')
 	
-	print("entered")
+
 	update_money_display.rpc(sell_queue_value)
 	
 func _on_body_exit(node: Node3D):
@@ -61,7 +61,7 @@ func _on_body_exit(node: Node3D):
 	sell_queue.remove_at(sell_queue.find(node))
 	sell_queue_value -= node.get_meta("value")
 	
-	print("left")
+
 	update_money_display.rpc(sell_queue_value)
 	
 @rpc("any_peer", "call_local", "reliable")

@@ -219,7 +219,7 @@ func _try_grab() -> void:
 	# Locate the component on the hit body
 	var component := collider.get_node_or_null("DraggableComponent") as DraggableComponent
 	if component != null:
-		print("start drag")
+
 		current_draggable = component
 		var hit_point := raycast.get_collision_point()
 		
