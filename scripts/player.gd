@@ -31,6 +31,9 @@ var footstep_audio_can_play = true
 var footstep_landed
 #endregion
 
+@export var hold_distance: float = 2.5
+var current_draggable: DraggableComponent = null
+
 #region collider
 var current_collider: Node3D
 #endregion
@@ -59,9 +62,8 @@ func _process(_delta: float) -> void:
 	
 	
 	if not current_collider: return
-	if current_collider.has_method("interact"):
-		#TODO: Display E to interact
-		pass
+	
+	
 	
 	
 
@@ -70,6 +72,10 @@ func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
 	player_movement(delta)
+	
+	if current_draggable != null:
+		var target_pos := camera.global_position - camera.global_transform.basis.z * hold_distance
+		current_draggable.request_update_drag.rpc(target_pos)
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Ignore input events for remote peers
@@ -81,12 +87,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Process mouse motion
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_movement(event)
-		
-	if !current_collider: return
 	
 	if event.is_action_pressed("interact"):
-		if current_collider.has_method('interact'):
+		if current_collider and current_collider.has_method('interact'):
 			current_collider.interact()
+			
+	if event.is_action_pressed("attack"): 
+		if current_draggable == null:
+			_try_grab()
+	if event.is_action_released("attack"):
+		if current_draggable != null:
+			_release_grab()
 
 func player_movement(delta: float) -> void: #delta just takes in the delta float from physics process
 	# Add the gravity.
@@ -158,4 +169,24 @@ func play_footstep_sfx():
 	if footstep_audio:
 		footstep_audio.volume_linear = player_config.master_volume / 1000
 		footstep_audio.play()
+		
+func _try_grab() -> void:
+	if not raycast.is_colliding(): return
 	
+	var collider := raycast.get_collider()
+	if collider == null: return
+	
+	# Locate the component on the hit body
+	var component := collider.get_node_or_null("DraggableComponent") as DraggableComponent
+	if component != null:
+		print("start drag")
+		current_draggable = component
+		var hit_point := raycast.get_collision_point()
+		
+		# Request drag start on server
+		current_draggable.request_begin_drag.rpc(hit_point)
+	
+func _release_grab() -> void:
+	if current_draggable != null:
+		current_draggable.request_end_drag.rpc()
+		current_draggable = null

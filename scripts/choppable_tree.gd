@@ -1,5 +1,6 @@
+extends RigidBody3D
 class_name ChoppableTree
-extends Draggable
+
 
 #region Child References
 @onready var canopy: Array[Node] = find_children("canopy*")
@@ -13,7 +14,7 @@ extends Draggable
 
 func _ready() -> void:
 	freeze = true
-	drag_enabled = false 
+	
 	#throwable = false
 
 @rpc("any_peer", "call_local", "reliable")
@@ -31,7 +32,7 @@ func fell_tree() -> void:
 	if !multiplayer.is_server() or is_felled: return
 	
 	is_felled = true
-	drag_enabled = true
+	
 	freeze = false
 	sleeping = false
 	
