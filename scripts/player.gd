@@ -35,6 +35,7 @@ var footstep_landed
 #region Dragging
 @export var hold_distance: float = 2.5
 var current_draggable: DraggableComponent = null
+@export var throw_force: float = 1.0
 #endregion
 
 var current_collider: Node3D
@@ -61,6 +62,9 @@ func _ready() -> void:
 		if hud:
 			hud.visible = false
 			hud.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	#Make the player start with the starter axe
+	hud.request_add_item.rpc_id(1, "res://tools/starter_axe/starter_axe.tres")
 		
 func _process(_delta: float) -> void:
 	current_collider = raycast.get_collider()
@@ -96,22 +100,26 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_movement(event)
 	
+	if event.is_action_pressed("drop"):
+		if hud.active_slot != -1:
+			hud.request_drop_item.rpc_id(1, hud.active_slot)
+	
 	if event.is_action_pressed("interact"):
 		if current_collider and current_collider.has_method('interact'):
-			current_collider.interact()
+			current_collider.interact(get_multiplayer_authority())
+		else:
+			var pickup := current_collider.get_node_or_null("PickupComponent") as PickupComponent
+			if pickup != null: pickup.interact(get_multiplayer_authority())
 			
 	if event.is_action_pressed("attack"): 
 		if current_draggable == null and hud.held_item == null:
 			_try_grab()
 		elif current_collider and current_collider.has_method("request_attack"):
 			current_collider.request_attack.rpc_id(1, hud.held_item_path)
+			
 	if event.is_action_released("attack"):
 		if current_draggable != null:
 			_release_grab()
-			
-	if event.is_action_pressed("debug 1"):
-		hud.request_add_item.rpc_id(1, "res://tools/dev_axe/dev_axe.tres")
-		print("Requesting give axe")
 
 func player_movement(delta: float) -> void: #delta just takes in the delta float from physics process
 	# Add the gravity.

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://c3vwmykvafiw7"]
+
+[ext_resource type="Texture2D" uid="uid://b8vihq3r2degu" path="res://sprites/tools/axes/iron_axe.png" id="1_013qr"]
+[ext_resource type="PackedScene" uid="uid://c631al5tf2cc0" path="res://tools/iron_axe/iron_axe.tscn" id="2_umitt"]
+[ext_resource type="Script" uid="uid://fga3fryufmca" path="res://tools/tool_data.gd" id="3_sd0he"]
+
+[resource]
+script = ExtResource("3_sd0he")
+name = "Iron Axe"
+icon = ExtResource("1_013qr")
+scene = ExtResource("2_umitt")
+power = 125
+value = 200
+buy_price = 500
+metadata/_custom_type_script = "uid://fga3fryufmca"

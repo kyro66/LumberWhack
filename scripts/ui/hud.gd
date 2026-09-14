@@ -79,7 +79,7 @@ func update_money(amount: int):
 	money_label.text = "$%d" % amount
 
 @rpc("any_peer", "call_local", "reliable")
-func request_add_item(item_path: String) -> void:
+func request_add_item(item_path: String, target_player_id: int = -1):
 	if not multiplayer.is_server(): return
 	
 	var sender_id = multiplayer.get_remote_sender_id()
@@ -108,10 +108,21 @@ func request_add_item(item_path: String) -> void:
 	if target_slot != -1:
 		inventory[target_slot] = item_resource
 		sync_slot_update.rpc_id(sender_id, target_slot, item_path)
+	
+	if target_slot == -1:
+		return false
+
+	inventory[target_slot] = item_resource
+	sync_slot_update.rpc_id(sender_id, target_slot, item_path)
+	return true
 				
 @rpc("any_peer", "call_local", "reliable")
 func sync_slot_update(slot_index: int, item_path: String) -> void:
-	inventory[slot_index] = load(item_path)
+	if item_path == "":
+		inventory[slot_index] = null
+	else:
+		inventory[slot_index] = load(item_path)
+		
 	update_hotbar()
 	
 func update_hotbar() -> void:
@@ -136,6 +147,40 @@ func update_hotbar() -> void:
 		held_item_path = ""
 		
 	player.update_held_item_display(held_item_path)
+
+@rpc("any_peer", "call_local", "reliable")
+func request_drop_item(slot_index:int) -> void:
+	if not multiplayer.is_server(): return
+	
+	var sender_id := multiplayer.get_remote_sender_id()
+	if sender_id == 0: sender_id = 1
+	
+	# a client can only drop its own items
+	if sender_id != get_multiplayer_authority(): return
+	
+	if slot_index < 0 or slot_index >= inventory.size():
+		return
+		
+	var item: ToolData = inventory[slot_index]
+	
+	if item == null: return
+	
+	sync_slot_update.rpc_id(sender_id, slot_index, "")
+	
+	var spawner: MultiplayerSpawner = get_tree().current_scene.get_node_or_null("DroppedItemSpawner")
+	
+	if spawner != null:
+		var drop_position := player.global_position
+		drop_position += -player.global_transform.basis.z * 1.5
+		drop_position += Vector3.UP * 1.0
+		
+		var throw_velocity: Vector3 = -player.global_transform.basis.z * 2.0 * player.throw_force
+		
+		spawner.spawn_item(
+			item.resource_path,
+			drop_position,
+			throw_velocity
+		)
 	
 func _on_quit_game_button_down() -> void:
 	get_tree().quit()

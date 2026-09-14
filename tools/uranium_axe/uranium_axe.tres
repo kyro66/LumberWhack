@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://bsmynv4wtih2l"]
+
+[ext_resource type="Texture2D" uid="uid://c6gc18ovlynyn" path="res://sprites/tools/axes/uranium_axe.png" id="1_45vvc"]
+[ext_resource type="Script" uid="uid://fga3fryufmca" path="res://tools/tool_data.gd" id="1_ybwan"]
+[ext_resource type="PackedScene" uid="uid://bmjwr8ag43h2t" path="res://tools/uranium_axe/uranium_axe.tscn" id="2_guuar"]
+
+[resource]
+script = ExtResource("1_ybwan")
+name = "Uranium Axe"
+icon = ExtResource("1_45vvc")
+scene = ExtResource("2_guuar")
+power = 500
+value = 800
+buy_price = 2000
+metadata/_custom_type_script = "uid://fga3fryufmca"

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dcymjkf0brjix"]
+
+[ext_resource type="Script" uid="uid://bikjt5a1r0wqo" path="res://scripts/shop.gd" id="1_wamvd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+
+[node name="Shop" type="StaticBody3D" unique_id=1075953648 node_paths=PackedStringArray("shop_label")]
+script = ExtResource("1_wamvd")
+shop_label = NodePath("Label3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=719377552]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1032400490]
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=541701862]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+text = "$100 - Starter Axe"

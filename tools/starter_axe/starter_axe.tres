@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://bqenmcevr47hf"]
+
+[ext_resource type="Texture2D" uid="uid://b4bt4j2u4vhed" path="res://sprites/tools/axes/starter_axe.png" id="1_my6um"]
+[ext_resource type="PackedScene" uid="uid://c084418kc8k7q" path="res://tools/starter_axe/starter_axe.tscn" id="2_r45dg"]
+[ext_resource type="Script" uid="uid://fga3fryufmca" path="res://tools/tool_data.gd" id="3_qscpy"]
+
+[resource]
+script = ExtResource("3_qscpy")
+name = "Starter Axe"
+icon = ExtResource("1_my6um")
+scene = ExtResource("2_r45dg")
+power = 20
+value = 40
+buy_price = 100
+metadata/_custom_type_script = "uid://fga3fryufmca"

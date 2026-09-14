@@ -9,6 +9,7 @@ enum ToolType {AXE, KNIFE, SAW}
 @export var type: ToolType
 @export var power: int
 @export var value: int
+@export var buy_price: int
 
 func _ready() -> void:
 	set_meta("value", value)

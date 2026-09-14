@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://v1tjh5si6mcq"]
 
 [ext_resource type="PackedScene" uid="uid://ckc8p720a6jtk" path="res://prefabs/player_spawner.tscn" id="1_3xpgj"]
-[ext_resource type="PackedScene" uid="uid://chpxwtuftyhwc" path="res://prefabs/trees/basic_tree.tscn" id="2_8h18b"]
-[ext_resource type="Script" uid="uid://8aswxa775pnd" path="res://scripts/tree_spawner.gd" id="2_cytrd"]
+[ext_resource type="PackedScene" uid="uid://cybw72b3ybec3" path="res://prefabs/tree_spawner.tscn" id="2_nqfy6"]
 [ext_resource type="PackedScene" uid="uid://ea7cnsqce8nm" path="res://prefabs/sell_area.tscn" id="3_emb1p"]
+[ext_resource type="PackedScene" uid="uid://dgk1fguklk6fb" path="res://prefabs/dropped_item_spawner.tscn" id="3_fxye6"]
 [ext_resource type="PackedScene" uid="uid://deh8mgqrl68qj" path="res://prefabs/npcs/seller.tscn" id="4_cytrd"]
+[ext_resource type="PackedScene" uid="uid://dcymjkf0brjix" path="res://prefabs/shop.tscn" id="6_efvpj"]
+[ext_resource type="Resource" uid="uid://b4owbju3vhhyx" path="res://tools/copper_axe/copper_axe.tres" id="7_nqfy6"]
+[ext_resource type="Resource" uid="uid://c3vwmykvafiw7" path="res://tools/iron_axe/iron_axe.tres" id="8_fxye6"]
+[ext_resource type="Resource" uid="uid://df3htadq6nsio" path="res://tools/platinum_axe/platinum_axe.tres" id="9_t20rq"]
+[ext_resource type="Resource" uid="uid://bsmynv4wtih2l" path="res://tools/uranium_axe/uranium_axe.tres" id="10_v411n"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_3xpgj"]
 
@@ -45,11 +50,9 @@ sky = SubResource("Sky_yf5fn")
 
 [node name="PlayerSpawner" parent="." unique_id=947221261 instance=ExtResource("1_3xpgj")]
 
-[node name="TreeSpawner" type="MultiplayerSpawner" parent="." unique_id=1401198581]
-_spawnable_scenes = PackedStringArray("uid://chpxwtuftyhwc")
-spawn_path = NodePath(".")
-script = ExtResource("2_cytrd")
-basic_tree_scene = ExtResource("2_8h18b")
+[node name="TreeSpawner" parent="." unique_id=510669663 instance=ExtResource("2_nqfy6")]
+
+[node name="DroppedItemSpawner" parent="." unique_id=400808163 instance=ExtResource("3_fxye6")]
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=101384442]
 
@@ -71,3 +74,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8578053, 0, 0.018268526)
 [node name="Seller" parent="." unique_id=1904053443 node_paths=PackedStringArray("sell_area") instance=ExtResource("4_cytrd")]
 transform = Transform3D(-0.49477175, 0, -0.8690231, 0, 1, 0, 0.8690231, 0, -0.49477175, 5.5499763, 0, 1.9332604)
 sell_area = NodePath("../SellArea2")
+
+[node name="ToolShop" type="Node3D" parent="." unique_id=87960456]
+transform = Transform3D(-0.8660253, 0, -0.49999997, 0, 1, 0, 0.49999997, 0, -0.8660253, 2, 0, 7)
+
+[node name="CopperAxeShop" parent="ToolShop" unique_id=1075953648 instance=ExtResource("6_efvpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 0, 0)
+product = ExtResource("7_nqfy6")
+
+[node name="IronAxeShop" parent="ToolShop" unique_id=1186481664 instance=ExtResource("6_efvpj")]
+product = ExtResource("8_fxye6")
+
+[node name="PlatinumAxeShop" parent="ToolShop" unique_id=1998094981 instance=ExtResource("6_efvpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+product = ExtResource("9_t20rq")
+
+[node name="UraniumAxeShop" parent="ToolShop" unique_id=1288239579 instance=ExtResource("6_efvpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+product = ExtResource("10_v411n")

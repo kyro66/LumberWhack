@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dgk1fguklk6fb"]
+
+[ext_resource type="Script" uid="uid://bxx4itw7dgh2e" path="res://scripts/dropped_item_spawner.gd" id="1_a3n3e"]
+
+[node name="DroppedItemSpawner" type="MultiplayerSpawner" unique_id=400808163]
+spawn_path = NodePath("DroppedItems")
+script = ExtResource("1_a3n3e")
+
+[node name="DroppedItems" type="Node3D" parent="." unique_id=1821131056]

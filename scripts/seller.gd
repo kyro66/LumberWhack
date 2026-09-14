@@ -12,5 +12,5 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func interact():
+func interact(_player_id: int):
 	sell_area.on_sell_pressed.rpc()

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://b3au4venok5sv"]
+
+[ext_resource type="Script" uid="uid://fga3fryufmca" path="res://tools/tool_data.gd" id="1_7c3im"]
+
+[resource]
+script = ExtResource("1_7c3im")
+name = "Starter Axe"
+power = 20
+value = 10
+buy_price = 25
+metadata/_custom_type_script = "uid://fga3fryufmca"

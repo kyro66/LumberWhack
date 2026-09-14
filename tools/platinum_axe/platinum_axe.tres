@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://df3htadq6nsio"]
+
+[ext_resource type="Texture2D" uid="uid://efrqlb4a534" path="res://sprites/tools/axes/platinum_axe.png" id="1_csbl3"]
+[ext_resource type="Script" uid="uid://fga3fryufmca" path="res://tools/tool_data.gd" id="1_rpik7"]
+[ext_resource type="PackedScene" uid="uid://bg20j3x0atmyt" path="res://tools/platinum_axe/platinum_axe.tscn" id="2_0rdrj"]
+
+[resource]
+script = ExtResource("1_rpik7")
+name = "Platinum Axe"
+icon = ExtResource("1_csbl3")
+scene = ExtResource("2_0rdrj")
+power = 275
+value = 480
+buy_price = 1200
+metadata/_custom_type_script = "uid://fga3fryufmca"

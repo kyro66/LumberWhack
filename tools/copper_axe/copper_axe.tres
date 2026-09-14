@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://b4owbju3vhhyx"]
+
+[ext_resource type="Script" uid="uid://fga3fryufmca" path="res://tools/tool_data.gd" id="1_0uwii"]
+[ext_resource type="Texture2D" uid="uid://dj1oh4ftyxlxp" path="res://sprites/tools/axes/copper_axe.png" id="1_u5xld"]
+[ext_resource type="PackedScene" uid="uid://br63q1ow3iivv" path="res://tools/copper_axe/copper_axe.tscn" id="2_m26n3"]
+
+[resource]
+script = ExtResource("1_0uwii")
+name = "Copper Axe"
+icon = ExtResource("1_u5xld")
+scene = ExtResource("2_m26n3")
+power = 80
+value = 100
+buy_price = 250
+metadata/_custom_type_script = "uid://fga3fryufmca"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://cg54tg3el7bgy"]
 
-[ext_resource type="Texture2D" uid="uid://cmhxfy78c6tvs" path="res://tools/dev_axe/dev_axe.png" id="1_21kx8"]
+[ext_resource type="Texture2D" uid="uid://0kowg8e57vr7" path="res://sprites/tools/axes/dev_axe.png" id="1_21kx8"]
 [ext_resource type="PackedScene" uid="uid://b2sfii4dj2ut5" path="res://tools/dev_axe/dev_axe.tscn" id="1_oa677"]
 [ext_resource type="Script" uid="uid://fga3fryufmca" path="res://tools/tool_data.gd" id="1_pdub6"]
 
@@ -11,4 +11,5 @@ icon = ExtResource("1_21kx8")
 scene = ExtResource("1_oa677")
 power = 50
 value = 1
+buy_price = 25
 metadata/_custom_type_script = "uid://fga3fryufmca"

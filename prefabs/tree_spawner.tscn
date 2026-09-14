@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cybw72b3ybec3"]
+
+[ext_resource type="Script" uid="uid://8aswxa775pnd" path="res://scripts/tree_spawner.gd" id="1_x7oks"]
+[ext_resource type="PackedScene" uid="uid://chpxwtuftyhwc" path="res://prefabs/trees/basic_tree.tscn" id="2_0ptsq"]
+
+[node name="TreeSpawner" type="MultiplayerSpawner" unique_id=510669663]
+_spawnable_scenes = PackedStringArray("uid://chpxwtuftyhwc")
+spawn_path = NodePath(".")
+script = ExtResource("1_x7oks")
+basic_tree_scene = ExtResource("2_0ptsq")
