@@ -72,7 +72,7 @@ func on_sell_pressed():
 	
 	sell_debounce = true
 	
-	
+	MoneyManager.add_money(sell_queue_value)
 	
 	# Loop through all the items in sell queue
 	for valuable: Node3D in sell_queue:

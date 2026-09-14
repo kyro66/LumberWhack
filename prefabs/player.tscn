@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ci7kxtjevifm0"]
 
 [ext_resource type="Script" uid="uid://bg2cot6fpeort" path="res://scripts/player.gd" id="1_72ieh"]
-[ext_resource type="PackedScene" uid="uid://b464c7tehw7jv" path="res://prefabs/hud.tscn" id="2_4dohe"]
+[ext_resource type="PackedScene" uid="uid://dyp20qgck3vt3" path="res://prefabs/hud.tscn" id="2_4dohe"]
 [ext_resource type="PackedScene" uid="uid://j0yh4v5u1iuh" path="res://tools/hand/empty_hand.tscn" id="3_1txc5"]
 [ext_resource type="AudioStream" uid="uid://c3h3ium0c1acg" path="res://sfx/foodsteps/grass.mp3" id="5_ht1c8"]
 
@@ -31,7 +31,6 @@ hand = NodePath("Head/Camera3D/Hand")
 raycast = NodePath("Head/Camera3D/RayCast3D")
 hud = NodePath("HUD")
 footstep_audio = NodePath("FootstepAudio")
-metadata/value = 100.0
 
 [node name="HUD" parent="." unique_id=210433657 instance=ExtResource("2_4dohe")]
 

@@ -3,7 +3,7 @@ class_name ChoppableTree
 
 
 #region Child References
-@onready var canopy: Array[Node] = find_children("canopy*")
+@onready var canopy: Array[Node] = find_children("Canopy*")
 #endregion
 
 #region Tree Stats
@@ -40,6 +40,5 @@ func fell_tree() -> void:
 	
 	angular_velocity = fell_velocity * mass
 	
-func remove_canopy() -> void:
 	for i in canopy:
-		i.queue_free()
+		i.visible = false
