@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ci7kxtjevifm0"]
 
 [ext_resource type="Script" uid="uid://bg2cot6fpeort" path="res://scripts/player.gd" id="1_72ieh"]
-[ext_resource type="PackedScene" uid="uid://b464c7tehw7jv" path="res://prefabs/hud.tscn" id="2_4dohe"]
+[ext_resource type="PackedScene" uid="uid://b464c7tehw7jv" path="res://prefabs/ui/hud.tscn" id="2_4dohe"]
 [ext_resource type="AudioStream" uid="uid://c3h3ium0c1acg" path="res://sfx/foodsteps/grass.mp3" id="5_ht1c8"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4dohe"]

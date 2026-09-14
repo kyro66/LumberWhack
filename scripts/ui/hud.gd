@@ -24,6 +24,9 @@ var inventory: Array[ToolData] = []
 func _ready() -> void:
 	create_hotbar()
 	MoneyManager.money_changed.connect(update_money)
+	
+	pause_menu.visible = false
+	player_hud.visible = true
 
 func _unhandled_input(event) -> void:
 	if event.is_action_pressed("pause"): toggle_pause_menu()
