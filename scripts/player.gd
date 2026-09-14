@@ -38,6 +38,16 @@ var current_draggable: DraggableComponent = null
 @export var throw_force: float = 1.0
 #endregion
 
+#region Swinging
+@export var swing_angle: float = 45.0
+@export var swing_distance: float = 0.2
+@export var swing_forward_time: float = 0.08
+@export var swing_return_time: float = 0.12
+
+var hand_rest_transform: Transform3D
+var hand_swing_tween: Tween
+#endregion
+
 var current_collider: Node3D
 var player_config: SettingsConfig
 
@@ -62,6 +72,9 @@ func _ready() -> void:
 		if hud:
 			hud.visible = false
 			hud.process_mode = Node.PROCESS_MODE_DISABLED
+			
+	# save the hands resting transform
+	hand_rest_transform = hand.transform
 	
 	#Make the player start with the starter axe
 	hud.request_add_item.rpc_id(1, "res://tools/starter_axe/starter_axe.tres")
@@ -112,6 +125,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if pickup != null: pickup.interact(get_multiplayer_authority())
 			
 	if event.is_action_pressed("attack"): 
+		play_hand_swing.rpc()
+		
 		if current_draggable == null and hud.held_item == null:
 			_try_grab()
 		elif current_collider and current_collider.has_method("request_attack"):
@@ -228,3 +243,35 @@ func sync_held_item_mesh(item_path: String) -> void:
 			
 func update_held_item_display(item_path: String) -> void:
 	sync_held_item_mesh.rpc(item_path)
+
+@rpc("any_peer", "call_local", "reliable")
+func play_hand_swing() -> void:
+	if hand_swing_tween != null:
+		hand_swing_tween.kill()
+	
+	#reset first so repeatedly clicking doesnt drift the hand away
+	hand.transform = hand_rest_transform
+	
+	var swing_transform := hand_rest_transform
+	
+	# rotate down/forward around hands x axis
+	swing_transform = swing_transform.rotated_local(Vector3.RIGHT, deg_to_rad(-swing_angle))
+	
+	#small forward movement
+	swing_transform = swing_transform.translated_local(Vector3(0, 0, -swing_distance))
+	
+	hand_swing_tween = create_tween()
+
+	hand_swing_tween.tween_property(
+		hand,
+		"transform",
+		swing_transform,
+		swing_forward_time
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+	hand_swing_tween.tween_property(
+		hand,
+		"transform",
+		hand_rest_transform,
+		swing_return_time
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)

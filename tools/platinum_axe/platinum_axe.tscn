@@ -14,7 +14,7 @@ height = 0.7
 radius = 0.05
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gngh"]
-albedo_color = Color(0.6270928, 0.6521293, 0.65381026, 1)
+albedo_color = Color(0.1764706, 0.21960784, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_57qmd"]
 material = SubResource("StandardMaterial3D_3gngh")

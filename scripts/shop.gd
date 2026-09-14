@@ -6,7 +6,7 @@ extends StaticBody3D
 func _ready():
 	shop_label.text = "$" + str(product.buy_price) + " - " + product.name
 	
-func interact():
+func interact(_player_id):
 	request_purchase.rpc_id(1) # Second arg is which item in products you want to buy, temporarily hard coded
 	
 @rpc("any_peer", "call_local", "reliable")
@@ -21,7 +21,7 @@ func request_purchase() -> void:
 	
 	if MoneyManager.money < product.buy_price: return
 	
-	var buyer := get_node_or_null("../PlayerSpawner/" + str(buyer_id))
+	var buyer := get_tree().current_scene.get_node_or_null("PlayerSpawner/" + str(buyer_id))
 	if buyer == null: return
 	
 	var buyer_hud := buyer.get_node_or_null("HUD")

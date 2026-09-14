@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ea7cnsqce8nm" path="res://prefabs/sell_area.tscn" id="3_emb1p"]
 [ext_resource type="PackedScene" uid="uid://dgk1fguklk6fb" path="res://prefabs/dropped_item_spawner.tscn" id="3_fxye6"]
 [ext_resource type="PackedScene" uid="uid://deh8mgqrl68qj" path="res://prefabs/npcs/seller.tscn" id="4_cytrd"]
+[ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="5_g0fn4"]
 [ext_resource type="PackedScene" uid="uid://dcymjkf0brjix" path="res://prefabs/shop.tscn" id="6_efvpj"]
 [ext_resource type="Resource" uid="uid://b4owbju3vhhyx" path="res://tools/copper_axe/copper_axe.tres" id="7_nqfy6"]
 [ext_resource type="Resource" uid="uid://c3vwmykvafiw7" path="res://tools/iron_axe/iron_axe.tres" id="8_fxye6"]
@@ -45,6 +46,10 @@ sky_material = SubResource("ProceduralSkyMaterial_d0u6y")
 [sub_resource type="Environment" id="Environment_g4v7s"]
 background_mode = 2
 sky = SubResource("Sky_yf5fn")
+
+[sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fxye6"]
 
 [node name="Level1" type="Node3D" unique_id=487679356]
 
@@ -92,3 +97,15 @@ product = ExtResource("9_t20rq")
 [node name="UraniumAxeShop" parent="ToolShop" unique_id=1288239579 instance=ExtResource("6_efvpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 product = ExtResource("10_v411n")
+
+[node name="FreeMoney" type="RigidBody3D" parent="." unique_id=1274895542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+metadata/value = 50000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FreeMoney" unique_id=533428333]
+mesh = SubResource("SphereMesh_yf5fn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeMoney" unique_id=190002029]
+shape = SubResource("SphereShape3D_fxye6")
+
+[node name="DraggableComponent" parent="FreeMoney" unique_id=1645514485 instance=ExtResource("5_g0fn4")]

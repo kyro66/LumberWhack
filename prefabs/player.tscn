@@ -12,6 +12,9 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath("Head/Camera3D/Hand:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
 albedo_color = Color(0.43605796, 8.663535e-07, 1.6845763e-07, 1)
