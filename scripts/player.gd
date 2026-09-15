@@ -133,7 +133,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if current_draggable == null and hud.held_item == null:
 			_try_grab()
 		elif current_collider and current_collider.has_method("request_attack"):
-			current_collider.request_attack.rpc_id(1, hud.held_item_path)
+			current_collider.request_attack.rpc_id(1, hud.held_item_path, raycast.get_collision_point())
 			
 	if event.is_action_released("attack"):
 		if current_draggable != null:

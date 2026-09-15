@@ -11,5 +11,5 @@ icon = ExtResource("1_my6um")
 scene = ExtResource("2_r45dg")
 power = 20
 value = 40
-buy_price = 100
+buy_price = 1000
 metadata/_custom_type_script = "uid://fga3fryufmca"

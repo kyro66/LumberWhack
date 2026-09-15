@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cwlekkv50s6qx"]
+
+[ext_resource type="Script" uid="uid://bulnusmak62pl" path="res://scripts/log_chunk.gd" id="1_d1e00"]
+
+[node name="LogChunk" type="RigidBody3D" unique_id=1420195915]
+script = ExtResource("1_d1e00")
+log_health = 50
+is_felled = true
+trunk_height = 1.0
+trunk_radius = 0.15

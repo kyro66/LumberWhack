@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://s3hfsahjptg1"]
+
+[ext_resource type="PackedScene" uid="uid://cwlekkv50s6qx" path="res://tools/log_chunk/log_chunk.tscn" id="1_3fo5f"]
+[ext_resource type="Script" uid="uid://fga3fryufmca" path="res://tools/tool_data.gd" id="1_hk468"]
+
+[resource]
+script = ExtResource("1_hk468")
+name = "Log Chunk"
+scene = ExtResource("1_3fo5f")
+metadata/_custom_type_script = "uid://fga3fryufmca"

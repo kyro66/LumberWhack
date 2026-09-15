@@ -1,28 +1,15 @@
 [gd_scene format=3 uid="uid://nkp1jo4oo68u"]
 
 [ext_resource type="Script" uid="uid://cht0byvrbnmwa" path="res://scripts/tree.gd" id="1_4e8uh"]
+[ext_resource type="Material" uid="uid://boyh2dpgqnruk" path="res://textures/ironwood_bark.tres" id="2_c2yjx"]
 [ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="2_jygxe"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yf5fn"]
 height = 2.5
 radius = 0.2
 
-[sub_resource type="Gradient" id="Gradient_wia7d"]
-offsets = PackedFloat32Array(0.34057972, 1)
-colors = PackedColorArray(0.19793725, 0.19793722, 0.19793722, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4q68t"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y5m4n"]
-noise = SubResource("FastNoiseLite_4q68t")
-color_ramp = SubResource("Gradient_wia7d")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0u6y"]
-albedo_color = Color(0.66538143, 0.6783986, 0.67520094, 1)
-albedo_texture = SubResource("NoiseTexture2D_y5m4n")
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
-material = SubResource("StandardMaterial3D_d0u6y")
+material = ExtResource("2_c2yjx")
 top_radius = 0.1
 bottom_radius = 0.3
 height = 2.5
@@ -69,7 +56,7 @@ properties/5/replication_mode = 1
 [node name="IronwoodTree" type="RigidBody3D" unique_id=1134569236]
 freeze = true
 script = ExtResource("1_4e8uh")
-value = 400
+value = 4000
 health = 5000
 
 [node name="TrunkCollider" type="CollisionShape3D" parent="." unique_id=61257963]

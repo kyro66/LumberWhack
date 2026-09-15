@@ -2,22 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cht0byvrbnmwa" path="res://scripts/tree.gd" id="1_rodm1"]
 [ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="2_0nlda"]
+[ext_resource type="Material" uid="uid://ouxi1jq5xe6h" path="res://textures/maple_bark.tres" id="2_1ec1j"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yf5fn"]
 height = 2.5
 radius = 0.2
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4q68t"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y5m4n"]
-noise = SubResource("FastNoiseLite_4q68t")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d0u6y"]
-albedo_color = Color(0.42091557, 0.29292127, 0.13180569, 1)
-albedo_texture = SubResource("NoiseTexture2D_y5m4n")
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
-material = SubResource("StandardMaterial3D_d0u6y")
+material = ExtResource("2_1ec1j")
 top_radius = 0.1
 bottom_radius = 0.3
 height = 2.5
@@ -64,7 +56,7 @@ properties/5/replication_mode = 1
 [node name="MapleTree" type="RigidBody3D" unique_id=1134569236]
 freeze = true
 script = ExtResource("1_rodm1")
-value = 120
+value = 1200
 health = 1000
 
 [node name="TrunkCollider" type="CollisionShape3D" parent="." unique_id=61257963]
