@@ -4,12 +4,12 @@ extends Node
 signal money_changed(new_amount: int)
 
 
-@export var money := 0:
+@export var money: int = 0:
 	set(value):
 		money = value
 		money_changed.emit(money)
 
-func add_money(amount: float):
+func add_money(amount: int):
 	if not multiplayer.is_server(): return
 	
 	# This will use the set(value): method

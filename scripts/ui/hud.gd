@@ -84,7 +84,7 @@ func update_money(amount: int):
 	money_label.text = "$%d" % amount
 
 @rpc("any_peer", "call_local", "reliable")
-func request_add_item(item_path: String, target_player_id: int = -1):
+func request_add_item(item_path: String, _target_player_id: int = -1):
 	if not multiplayer.is_server(): return
 	
 	var sender_id = multiplayer.get_remote_sender_id()
