@@ -5,7 +5,7 @@ class_name Sell
 @export var value_display: Label3D
 
 var sell_queue: Array[Node3D]
-var sell_queue_value: float
+var sell_queue_value: int
 
 var sell_debounce: bool
 
@@ -86,7 +86,7 @@ func on_sell_pressed():
 
 
 @rpc("authority", "call_local", "reliable")
-func update_money_display(new: float):
+func update_money_display(new: int):
 	sell_queue_value = new
 	value_display.text = 'Value: %d' % [sell_queue_value] 
 	
