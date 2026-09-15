@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ea7cnsqce8nm" path="res://prefabs/sell_area.tscn" id="3_emb1p"]
 [ext_resource type="PackedScene" uid="uid://dgk1fguklk6fb" path="res://prefabs/dropped_item_spawner.tscn" id="3_fxye6"]
 [ext_resource type="PackedScene" uid="uid://deh8mgqrl68qj" path="res://prefabs/npcs/seller.tscn" id="4_cytrd"]
+[ext_resource type="PackedScene" uid="uid://dv4ggk8uat78m" path="res://prefabs/vehicles/truck.tscn" id="4_fxye6"]
 [ext_resource type="PackedScene" uid="uid://dcymjkf0brjix" path="res://prefabs/shop.tscn" id="6_efvpj"]
 [ext_resource type="Resource" uid="uid://b4owbju3vhhyx" path="res://tools/copper_axe/copper_axe.tres" id="7_nqfy6"]
 [ext_resource type="Resource" uid="uid://c3vwmykvafiw7" path="res://tools/iron_axe/iron_axe.tres" id="8_fxye6"]
@@ -87,6 +88,9 @@ shape = SubResource("WorldBoundaryShape3D_3xpgj")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Scenery/Floor" unique_id=616206233]
 mesh = SubResource("PlaneMesh_8h18b")
 
+[node name="Truck" parent="Scenery/Floor" unique_id=2079029518 instance=ExtResource("4_fxye6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.867755, 2.0576448, 14.737659)
+
 [node name="Road" type="MeshInstance3D" parent="Scenery" unique_id=1373835576]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.685755e-08, 2)
 mesh = SubResource("BoxMesh_nqfy6")
@@ -109,17 +113,17 @@ sell_area = NodePath("../SellArea2")
 transform = Transform3D(0.49999997, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.49999997, -11, 0.5, 1)
 
 [node name="CopperAxeShop" parent="ToolShop" unique_id=1075953648 instance=ExtResource("6_efvpj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0526562, 0, 36.323322)
 product = ExtResource("7_nqfy6")
 
 [node name="IronAxeShop" parent="ToolShop" unique_id=1186481664 instance=ExtResource("6_efvpj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7526522, 0, 36.32332)
 product = ExtResource("8_fxye6")
 
 [node name="PlatinumAxeShop" parent="ToolShop" unique_id=1998094981 instance=ExtResource("6_efvpj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5526514, 0, 36.32332)
 product = ExtResource("9_t20rq")
 
 [node name="UraniumAxeShop" parent="ToolShop" unique_id=1288239579 instance=ExtResource("6_efvpj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3526545, 0, 36.32332)
 product = ExtResource("10_v411n")
