@@ -129,14 +129,14 @@ product = ExtResource("9_t20rq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 product = ExtResource("10_v411n")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1122030964]
+[node name="FreeMoney" type="RigidBody3D" parent="." unique_id=1122030964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 12)
 metadata/value = 50000
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1910459931]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FreeMoney" unique_id=1910459931]
 mesh = SubResource("BoxMesh_yf5fn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2036375524]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeMoney" unique_id=2036375524]
 shape = SubResource("BoxShape3D_57qmd")
 
-[node name="DraggableComponent" parent="RigidBody3D" unique_id=1645514485 instance=ExtResource("11_fxye6")]
+[node name="DraggableComponent" parent="FreeMoney" unique_id=1645514485 instance=ExtResource("11_fxye6")]
