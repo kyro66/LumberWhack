@@ -51,6 +51,7 @@ func _spawn_dropped_item(data: Dictionary) -> Node:
 	
 	dropped_item.set_meta("value", tool.value)
 	
+	print(dropped_item)
 	return dropped_item
 	
 	

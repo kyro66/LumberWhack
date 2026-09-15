@@ -170,7 +170,7 @@ func request_drop_item(slot_index:int) -> void:
 	
 	sync_slot_update.rpc_id(sender_id, slot_index, "")
 	
-	var spawner: MultiplayerSpawner = get_tree().current_scene.get_node_or_null("DroppedItemSpawner")
+	var spawner: MultiplayerSpawner = get_tree().current_scene.get_node("Spawners").get_node("DroppedItemSpawner")
 	
 	if spawner != null:
 		var drop_position := player.global_position
