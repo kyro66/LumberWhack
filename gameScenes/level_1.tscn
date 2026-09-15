@@ -11,11 +11,7 @@
 [ext_resource type="Resource" uid="uid://c3vwmykvafiw7" path="res://tools/iron_axe/iron_axe.tres" id="8_fxye6"]
 [ext_resource type="Resource" uid="uid://df3htadq6nsio" path="res://tools/platinum_axe/platinum_axe.tres" id="9_t20rq"]
 [ext_resource type="Resource" uid="uid://bsmynv4wtih2l" path="res://tools/uranium_axe/uranium_axe.tres" id="10_v411n"]
-<<<<<<< Updated upstream
-=======
 [ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="11_fxye6"]
-[ext_resource type="AudioStream" uid="uid://cemhbrseplr0j" path="res://sfx/lt2.mp3" id="12_t20rq"]
->>>>>>> Stashed changes
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d0u6y"]
 sky_top_color = Color(0.685048, 0.30243766, 0.40649852, 1)
@@ -61,7 +57,11 @@ size = Vector3(4, 0.4, 999)
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 material = SubResource("StandardMaterial3D_g4v7s")
-size = Vector3(30, 0.4, 4)
+size = Vector3(17, 0.4, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_57qmd"]
 
 [node name="Level1" type="Node3D" unique_id=487679356]
 
@@ -75,7 +75,7 @@ _spawnable_scenes = PackedStringArray()
 [node name="DroppedItemSpawner" parent="Spawners" unique_id=400808163 instance=ExtResource("3_fxye6")]
 
 [node name="PlayerSpawnLocation" type="Node3D" parent="." unique_id=1868657336]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 17)
 
 [node name="Scenery" type="Node" parent="." unique_id=794730136]
 
@@ -101,21 +101,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.685755e-08, 2)
 mesh = SubResource("BoxMesh_nqfy6")
 
 [node name="Road2" type="MeshInstance3D" parent="Scenery" unique_id=993625618]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 9.685755e-08, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 9.685755e-08, 24)
 mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="Sell" type="Node3D" parent="." unique_id=1196997910]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 25, 0, 18)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.7, 0, 30.699999)
 
 [node name="SellArea2" parent="Sell" unique_id=1681758204 instance=ExtResource("3_emb1p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8578053, 0, 0.018268526)
 
 [node name="Seller" parent="Sell" unique_id=1904053443 node_paths=PackedStringArray("sell_area") instance=ExtResource("4_cytrd")]
-transform = Transform3D(-0.49477175, 0, -0.8690231, 0, 1, 0, 0.8690231, 0, -0.49477175, 5.5499763, 0, 1.9332604)
+transform = Transform3D(0.93761444, 0, 0.34767717, 0, 1, 0, -0.34767717, 0, 0.93761444, 3.7801645, 0, 5.789135)
 sell_area = NodePath("../SellArea2")
 
 [node name="ToolShop" type="Node3D" parent="." unique_id=87960456]
-transform = Transform3D(0.49999997, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, 0.49999997, -11, 0.5, 1)
+transform = Transform3D(-0.5, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.5, -6.1076946, 0.5, 23.454483)
 
 [node name="CopperAxeShop" parent="ToolShop" unique_id=1075953648 instance=ExtResource("6_efvpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0526562, 0, 36.323322)
@@ -132,8 +132,6 @@ product = ExtResource("9_t20rq")
 [node name="UraniumAxeShop" parent="ToolShop" unique_id=1288239579 instance=ExtResource("6_efvpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3526545, 0, 36.32332)
 product = ExtResource("10_v411n")
-<<<<<<< Updated upstream
-=======
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1122030964]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 12)
@@ -146,10 +144,3 @@ mesh = SubResource("BoxMesh_yf5fn")
 shape = SubResource("BoxShape3D_57qmd")
 
 [node name="DraggableComponent" parent="RigidBody3D" unique_id=1645514485 instance=ExtResource("11_fxye6")]
-
-[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1537236498]
-stream = ExtResource("12_t20rq")
-volume_db = -13.601
-autoplay = true
-parameters/looping = true
->>>>>>> Stashed changes

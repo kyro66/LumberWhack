@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 #region Player Physics Variables
-const SPEED = 5.0
+const SPEED = 7.5
 const JUMP_VELOCITY = 4.5
 #endregion
 
