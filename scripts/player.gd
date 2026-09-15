@@ -16,11 +16,12 @@ const JUMP_VELOCITY = 4.5
 @export var hand: Node3D
 @export var raycast: RayCast3D
 @export var hud: Control
+@export var foot: Node3D
 #endregion
 
 #region Head bob
 @export_group("headbob")
-@export var headbob_freq := 2.0
+@export var headbob_freq := 1.0
 @export var headbob_amplitude := 0.04
 var headbob_time := 0.0
 #endregion
@@ -128,12 +129,12 @@ func _unhandled_input(event: InputEvent) -> void:
 				if pickup != null: pickup.interact(get_multiplayer_authority())
 			
 	if event.is_action_pressed("attack"): 
-		play_hand_swing.rpc()
+		
 		
 		if current_draggable == null and hud.held_item == null:
 			_try_grab()
 		elif current_collider and current_collider.has_method("request_attack"):
-			current_collider.request_attack.rpc_id(1, hud.held_item_path)
+			current_collider.request_attack.rpc_id(1, hud.held_item_path, get_path())
 			
 	if event.is_action_released("attack"):
 		if current_draggable != null:
@@ -198,17 +199,19 @@ func headbob(time: float) -> Vector3:
 	if headbob_position.y > footstep_threshold:
 		footstep_audio_can_play = true
 	elif headbob_position.y <= footstep_threshold and footstep_audio_can_play:
-		if footstep_audio and is_on_floor():
-			play_footstep_sfx.rpc()
+		if is_on_floor():
+			play_footstep_sfx()
 		footstep_audio_can_play = false # FIX: Lock audio until bob goes back up
 	
 	return headbob_position
 	
 @rpc("any_peer", "call_local", "reliable")
 func play_footstep_sfx():
-	if footstep_audio:
-		footstep_audio.volume_linear = player_config.master_volume / 1000
-		footstep_audio.play()
+	pass
+	AudioManager.create_3d_audio_at_location.rpc(
+		foot.position, 
+		SoundEffect.SOUND_EFFECT_TYPE.FOOTSTEP
+		)
 		
 func _try_grab() -> void:
 	if not raycast.is_colliding(): return

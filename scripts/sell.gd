@@ -64,10 +64,21 @@ func _on_body_exit(node: Node3D):
 	
 @rpc("any_peer", "call_local", "reliable")
 func on_sell_pressed():
+	print("1")
 	if not multiplayer.is_server(): return
+	print("2")
 	if sell_debounce: return
-	
+	print('3')
 	sell_debounce = true
+	print('4')
+	
+	if sell_queue_value <= 0: 
+		print(sell_queue_value)
+		return
+	
+	AudioManager.create_3d_audio_at_location.rpc(area.position, SoundEffect.SOUND_EFFECT_TYPE.KACHING)
+	
+	print('5')
 	
 	MoneyManager.add_money(sell_queue_value)
 	

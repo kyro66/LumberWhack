@@ -5,6 +5,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ub2mi"]
 
+[sub_resource type="AudioStream" id="AudioStream_jq8tk"]
+
 [node name="Seller" type="StaticBody3D" unique_id=885628351]
 script = ExtResource("1_ixjcn")
 
@@ -23,3 +25,6 @@ text = "Hey! Stop that."
 
 [node name="Timer" type="Timer" parent="." unique_id=1843030495]
 wait_time = 1.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1918118338]
+stream = SubResource("AudioStream_jq8tk")

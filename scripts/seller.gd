@@ -9,7 +9,8 @@ func _ready():
 func request_attack(_tool_path: String) -> void:
 	$Timer.start()
 	$Label3D.visible = true
-
+	
+	
 func interact(_player_id: int):
 	sell_area.on_sell_pressed.rpc()
 

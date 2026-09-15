@@ -11,6 +11,11 @@
 [ext_resource type="Resource" uid="uid://c3vwmykvafiw7" path="res://tools/iron_axe/iron_axe.tres" id="8_fxye6"]
 [ext_resource type="Resource" uid="uid://df3htadq6nsio" path="res://tools/platinum_axe/platinum_axe.tres" id="9_t20rq"]
 [ext_resource type="Resource" uid="uid://bsmynv4wtih2l" path="res://tools/uranium_axe/uranium_axe.tres" id="10_v411n"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="11_fxye6"]
+[ext_resource type="AudioStream" uid="uid://cemhbrseplr0j" path="res://sfx/lt2.mp3" id="12_t20rq"]
+>>>>>>> Stashed changes
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d0u6y"]
 sky_top_color = Color(0.685048, 0.30243766, 0.40649852, 1)
@@ -127,3 +132,24 @@ product = ExtResource("9_t20rq")
 [node name="UraniumAxeShop" parent="ToolShop" unique_id=1288239579 instance=ExtResource("6_efvpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.3526545, 0, 36.32332)
 product = ExtResource("10_v411n")
+<<<<<<< Updated upstream
+=======
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1122030964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 12)
+metadata/value = 50000
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1910459931]
+mesh = SubResource("BoxMesh_yf5fn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=2036375524]
+shape = SubResource("BoxShape3D_57qmd")
+
+[node name="DraggableComponent" parent="RigidBody3D" unique_id=1645514485 instance=ExtResource("11_fxye6")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1537236498]
+stream = ExtResource("12_t20rq")
+volume_db = -13.601
+autoplay = true
+parameters/looping = true
+>>>>>>> Stashed changes
