@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cln6jo4wd45ke"]
+
+[ext_resource type="Script" path="res://sfx/audio_manager.gd" id="1_wexck"]
+[ext_resource type="Script" path="res://sfx/sound_effect_setting.gd" id="2_1yhqj"]
+[ext_resource type="AudioStream" path="res://sfx/kaching.mp3" id="3_w0y3d"]
+[ext_resource type="AudioStream" uid="uid://c3h3ium0c1acg" path="res://sfx/foodsteps/grass.mp3" id="4_bxeix"]
+[ext_resource type="AudioStream" path="res://sfx/tree_hit.mp3" id="5_bxeix"]
+[ext_resource type="AudioStream" path="res://sfx/tree_last_hit.mp3" id="6_ildh4"]
+
+[sub_resource type="Resource" id="Resource_wexck"]
+script = ExtResource("2_1yhqj")
+sound_effect = ExtResource("3_w0y3d")
+metadata/_custom_type_script = "uid://61lbd5cnfed"
+
+[sub_resource type="Resource" id="Resource_ofe40"]
+script = ExtResource("2_1yhqj")
+type = 1
+sound_effect = ExtResource("4_bxeix")
+volume = -7.026000000000003
+metadata/_custom_type_script = "uid://61lbd5cnfed"
+
+[sub_resource type="Resource" id="Resource_1yhqj"]
+script = ExtResource("2_1yhqj")
+type = 2
+sound_effect = ExtResource("5_bxeix")
+metadata/_custom_type_script = "uid://61lbd5cnfed"
+
+[sub_resource type="Resource" id="Resource_w0y3d"]
+script = ExtResource("2_1yhqj")
+type = 3
+sound_effect = ExtResource("6_ildh4")
+metadata/_custom_type_script = "uid://61lbd5cnfed"
+
+[node name="AudioManager" type="Node2D" unique_id=1176736047]
+script = ExtResource("1_wexck")
+sound_effects = Array[ExtResource("2_1yhqj")]([SubResource("Resource_wexck"), SubResource("Resource_ofe40"), SubResource("Resource_1yhqj"), SubResource("Resource_w0y3d")])

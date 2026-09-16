@@ -13,12 +13,21 @@ config_version=5
 config/name="LumberWhack!"
 run/main_scene="uid://dxcrrquvneevu"
 config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/stretch_mode=4
+boot_splash/image="uid://dgvc62dgvl24x"
 config/icon="uid://c61uyeuytm1b7"
+boot_splash/minimum_display_time=2500
+
+[audio]
+
+general/text_to_speech=true
 
 [autoload]
 
 NetworkHandler="*uid://c3crdyvms3utb"
 MoneyManager="*uid://b2a2bmjqfmi3b"
+AudioManager="*uid://ey1ne7vegjvf"
 
 [display]
 

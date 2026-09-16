@@ -71,7 +71,7 @@ mesh = SubResource("CylinderMesh_g4v7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5078554, 0)
 mesh = SubResource("CylinderMesh_t20rq")
 
-[node name="DraggableComponent" parent="." unique_id=1645514485 instance=ExtResource("2_k68et")]
+[node name="DraggableComponent" parent="." unique_id=1855951634 instance=ExtResource("2_k68et")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1715040076]
 replication_config = SubResource("SceneReplicationConfig_y5m4n")
