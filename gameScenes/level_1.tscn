@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://df3htadq6nsio" path="res://tools/platinum_axe/platinum_axe.tres" id="9_t20rq"]
 [ext_resource type="Resource" uid="uid://bsmynv4wtih2l" path="res://tools/uranium_axe/uranium_axe.tres" id="10_v411n"]
 [ext_resource type="PackedScene" uid="uid://bav3tabthg5pf" path="res://components/draggable_component.tscn" id="11_fxye6"]
+[ext_resource type="AudioStream" uid="uid://cemhbrseplr0j" path="res://sfx/lt2.mp3" id="12_t20rq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d0u6y"]
 sky_top_color = Color(0.685048, 0.30243766, 0.40649852, 1)
@@ -144,3 +145,10 @@ mesh = SubResource("BoxMesh_yf5fn")
 shape = SubResource("BoxShape3D_57qmd")
 
 [node name="DraggableComponent" parent="RigidBody3D" unique_id=1645514485 instance=ExtResource("11_fxye6")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=439012110]
+stream = ExtResource("12_t20rq")
+volume_db = -9.044
+pitch_scale = 0.48
+autoplay = true
+parameters/looping = true
